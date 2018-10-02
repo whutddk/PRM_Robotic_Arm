@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<robot name="anno_chassis">
+	<link name= "Base_board">
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <box size="30 30 4"/>
+		    </geometry>
+		    <material name="black">
+		        <color rgba="0.1 0.1 0.1 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "shoulder"  >
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="26.4" radius="8.0"/>
+		    </geometry>
+		    <material name="yellow">
+		        <color rgba="1 0.4 0 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "big_arm"   >
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="22.5" radius="7.0"/>
+		    </geometry>
+		    <material name="red">
+		        <color rgba="1 0.1 0 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "elbow"     >
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="8.0" radius="6.0"/>
+		    </geometry>
+		    <material name="blue">
+		        <color rgba="0.1 0.1 0.9 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "wrist"    >
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="13.7" radius="5.0"/>
+		    </geometry>
+		    <material name="green">
+		        <color rgba="0.1 0.9 0 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "finger"   >
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="4.0" radius="4.0"/>
+		    </geometry>
+		    <material name="white">
+		        <color rgba="1 1 0.9 1"/>
+		    </material>
+		</visual>
+	</link>
+	<link name = "tool">
+		<visual>
+		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <geometry>
+		        <cylinder length="4" radius="2"/>
+		    </geometry>
+		    <material name="pink">
+		        <color rgba="1 0.7 0.7 1"/>
+		    </material>
+		</visual>
+	</link>
+
+	<joint name = "joint1" type = "continuous">
+	<parent link = "Base_board"/>
+	<child link = "shoulder"/>
+	<origin xyz="0 0 0" rpy = "0 0 0"/>
+	<axis xyz = " 0 0 1"/>
+	</joint>
+
+	<joint name = "joint2" type = "continuous">
+	<parent link = "shoulder"/>
+	<child link = "big_arm"/>
+	<origin xyz="0 0 26.4" rpy = "0 0 0"/>
+	<axis xyz = " 0 1 0"/>
+	</joint>
+
+	<joint name = "joint3" type = "continuous">
+	<parent link = "big_arm"/>
+	<child link = "elbow"/>
+	<origin xyz="0 0 22.5" rpy = "0 0 0"/>
+	<axis xyz = " 0 1 0"/>
+	</joint>
+
+	<joint name = "joint4" type = "continuous">
+	<parent link = "elbow"/>
+	<child link = "wrist"/>
+	<origin xyz="0 0 8.0" rpy = "0 0 0"/>
+	<axis xyz = " 0 0 1"/>
+	</joint>
+
+	<joint name = "joint5" type = "continuous">
+	<parent link = "wrist"/>
+	<child link = "finger"/>
+	<origin xyz="0 0 13.7" rpy = "0 0 0"/>
+	<axis xyz = " 0 1 0"/>
+	</joint>
+
+	<joint name = "joint6" type = "continuous">
+	<parent link = "finger"/>
+	<child link = "tool"/>
+	<origin xyz="0 0 4.0" rpy = "0 0 0"/>
+	<axis xyz = " 0 0 1"/>
+	</joint>
+
+
+</robot>
+

@@ -1,0 +1,23 @@
+digraph G {
+node [shape=box];
+"Base_board" [label="Base_board"];
+"shoulder" [label="shoulder"];
+"big_arm" [label="big_arm"];
+"elbow" [label="elbow"];
+"wrist" [label="wrist"];
+"finger" [label="finger"];
+"tool" [label="tool"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"Base_board" -> "joint1" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"joint1" -> "shoulder"
+"shoulder" -> "joint2" [label="xyz: 0 0 264 \nrpy: 0 -0 0"]
+"joint2" -> "big_arm"
+"big_arm" -> "joint3" [label="xyz: 0 0 225 \nrpy: 0 -0 0"]
+"joint3" -> "elbow"
+"elbow" -> "joint4" [label="xyz: 0 0 80 \nrpy: 0 -0 0"]
+"joint4" -> "wrist"
+"wrist" -> "joint5" [label="xyz: 0 0 137 \nrpy: 0 -0 0"]
+"joint5" -> "finger"
+"finger" -> "joint6" [label="xyz: 0 0 40 \nrpy: 0 -0 0"]
+"joint6" -> "tool"
+}
