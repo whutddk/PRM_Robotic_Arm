@@ -13,7 +13,7 @@
 	</link>
 	<link name = "shoulder"  >
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 13.2" rpy="0 0 0" />
 		    <geometry>
 		        <cylinder length="26.4" radius="8.0"/>
 		    </geometry>
@@ -24,7 +24,7 @@
 	</link>
 	<link name = "big_arm"   >
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 11.25" rpy="0 0 0" />
 		    <geometry>
 		        <cylinder length="22.5" radius="7.0"/>
 		    </geometry>
@@ -35,7 +35,7 @@
 	</link>
 	<link name = "elbow"     >
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 4" rpy="0 0 0" />
 		    <geometry>
 		        <cylinder length="8.0" radius="6.0"/>
 		    </geometry>
@@ -46,7 +46,7 @@
 	</link>
 	<link name = "wrist"    >
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 6.85" rpy="0 0 0" />
 		    <geometry>
 		        <cylinder length="13.7" radius="5.0"/>
 		    </geometry>
@@ -57,7 +57,7 @@
 	</link>
 	<link name = "finger"   >
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 2" rpy="0 0 0" />
 		    <geometry>
 		        <cylinder length="4.0" radius="4.0"/>
 		    </geometry>
@@ -68,9 +68,9 @@
 	</link>
 	<link name = "tool">
 		<visual>
-		    <origin xyz=" 0 0 0" rpy="0 0 0" />
+		    <origin xyz=" 0 0 10" rpy="0 0 0" />
 		    <geometry>
-		        <cylinder length="4" radius="2"/>
+		        <cylinder length="20" radius="2"/>
 		    </geometry>
 		    <material name="pink">
 		        <color rgba="1 0.7 0.7 1"/>
