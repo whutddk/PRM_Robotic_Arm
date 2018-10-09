@@ -25,9 +25,17 @@ T34 = [cos(theta4),-sin(theta4),0,0;    sin(theta4)*cos(-pi/2),cos(theta4)*cos(-
 T45 = [cos(theta5),-sin(theta5),0,0;    sin(theta5)*cos( pi/2),cos(theta5)*cos( pi/2),-sin( pi/2),-sin( pi/2)*0;    sin(theta5)*sin( pi/2),cos(theta5)*sin( pi/2),cos( pi/2),cos( pi/2)*0;          0,0,0,1];
 T56 = [cos(theta6),-sin(theta6),0,0;    sin(theta6)*cos(-pi/2),cos(theta6)*cos(-pi/2),-sin(-pi/2),-sin(-pi/2)*0;    sin(theta6)*sin(-pi/2),cos(theta6)*sin(-pi/2),cos(-pi/2),cos(-pi/2)*0;          0,0,0,1];
 
-PB = [1,0,0,0;  0,1,0,0;    0,0,1,50;    0,0,0,1];
+PB = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 
 Ptail =  PB * TB_0 * T01 * T12* T23 * T34 * T45*  T56 * T6_t 
+
+
+
+
+%Дж
+T06 = T01 * T12 * T23 * T34 * T45 * T56
+
+
 
 
 

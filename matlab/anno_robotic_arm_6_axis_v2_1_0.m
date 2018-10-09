@@ -5,12 +5,12 @@
 clc;
 clear;
 
-theta1 = 0;
-theta2 = 0;
-theta3 = 0;
-theta4 = 0;
-theta5 = 0;
-theta6 = 0;
+syms theta1;
+syms theta2;
+syms theta3;
+syms theta4;
+syms theta5;
+syms theta6;
 
 %DH_TAB = [ 0,0,0,theta1;    -pi/2,0,0,theta2;   0,225,0,theta3; -pi/2,0,217.3,theta4;   pi/2,0,0,theta5;    -pi/2,0,0,theta6 ];
 
@@ -27,7 +27,15 @@ T56 = [cos(theta6),-sin(theta6),0,0;    sin(theta6)*cos(-pi/2),cos(theta6)*cos(-
 
 PB = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 
-PS =T12 * T01 * TB_0 * PB
+Ptail =  PB * TB_0 * T01 * T12* T23 * T34 * T45*  T56 * T6_t
+
+
+
+
+%Дж
+T06 = T01 * T12 * T23 * T34 * T45 * T56
+
+
 
 
 
