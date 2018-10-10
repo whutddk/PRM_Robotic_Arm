@@ -97,8 +97,18 @@ Z4 =  sin(theta2)*((2173*sin(theta3))/10 - 225) - (2173*cos(theta2)*cos(theta3))
 %a1==0 d2==0
 %r= k3 = f1^2+ f2^2 + f3^2 =  |P04|^2 = |P06|^2 = 20^2+100^2+82^2
 
-SIN_THETA3 =  (225^2 +  217.3^2 - 20^2 - 100^2 - 82^2 ) / ( 2*225*217.3 )
+SIN_THETA3 =  (225^2 +  217.3^2 - 20^2 - 100^2 - 82^2 ) / ( 2*225*217.3 );
+
+%这里要手工判定
+theta3_result = asin(SIN_THETA3);
 
 
+%theta3 load in Z4 
 
+%%sin(theta2)*((2173*sin(theta3_result))/10 - 225) - (2173*cos(theta2)*cos(theta3_result))/10
+% sin = 2u/(1+u^2)  cos = (1-u^2)/(1+u^2)  u = tan(theta/2)
 
+%这里要手工判定2次
+u = (217.3* sin(theta3_result) -225) / 82-217.3*cos(theta3_result) + sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - (82/(82-217.3*cos(theta3_result))) )
+
+theta2_result = atan(u) * 2
