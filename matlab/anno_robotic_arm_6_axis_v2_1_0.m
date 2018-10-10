@@ -108,20 +108,26 @@ theta3_result = asin(SIN_THETA3);
 %%sin(theta2)*((2173*sin(theta3_result))/10 - 225) - (2173*cos(theta2)*cos(theta3_result))/10
 % sin = 2u/(1+u^2)  cos = (1-u^2)/(1+u^2)  u = tan(theta/2)
 
-%这里要手工判定2次
-u = (217.3 * sin(theta3_result) - 225) / (82 - 217.3  * cos(theta3_result)) + sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - ((82+217.3*cos( theta3_result ))/(82-217.3*cos(theta3_result))) );
+%这里要手工判定2次,如何判定？
+u = (217.3 * sin(theta3_result) - 225) / (82 - 217.3  * cos(theta3_result)) - sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - ((82+217.3*cos( theta3_result ))/(82-217.3*cos(theta3_result))) );
 
-theta2_result = atan(u) * 2;
+theta2_result = atan(u) * 2
+%用tan来反三角比较合适
+%COS_THETA1 = -20 / ( 217.3*cos( theta3_result )*sin(theta2_result) + cos( theta2_result )* ( 217.3*sin(theta3_result) - 225 ) );
+%theta1_result  = acos( COS_THETA1 )
 
-COS_THETA1 = -20 / ( 217.3*cos( theta3_result )*sin(theta2_result) + cos( theta2_result )* ( 217.3*sin(theta3_result) - 225 ) );
 
-theta1_result  = acos( COS_THETA1 );
+
+%SIN_THETA1 = -100 / ((217.3*cos(theta3_result)*sin(theta2_result)) + cos(theta2_result)*((217.3*sin(theta3_result)) - 225));
+%theta1_result = asin(SIN_THETA1)
+
+theta1_result = atan(100/20)
 
 %验算前几点
-%T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
-%T12 = [cos(theta2_result),-sin(theta2_result),0,0;	0,0,1,0;    -sin(theta2_result),-cos(theta2_result),0,0;          0,0,0,1];
-%T23 = [cos(theta3_result),-sin(theta3_result),0,225;  sin(theta3_result),cos(theta3_result),0,0;                 	0,0,1,0;                          0,0,0,1];
-%P6_0 =T01* T12 * T23*[0;217.3;0;1]
+T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
+T12 = [cos(theta2_result),-sin(theta2_result),0,0;	0,0,1,0;    -sin(theta2_result),-cos(theta2_result),0,0;          0,0,0,1];
+T23 = [cos(theta3_result),-sin(theta3_result),0,225;  sin(theta3_result),cos(theta3_result),0,0;                 	0,0,1,0;                          0,0,0,1];
+P6_0 =T01* T12 * T23*[0;217.3;0;1]
 
 %%%%解最后三个角
 T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
@@ -132,7 +138,7 @@ T0_3 = T01 * T12 *T23;
 R0_6 = T0_6(1:3,1:3);
 R0_3 = T0_3(1:3,1:3);
 R3_0 = R0_3';
-R3_6 = R3_0 * R0_6
+R3_6 = R3_0 * R0_6;
 
 %%% Euler angle
 
@@ -151,14 +157,14 @@ R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
 R45 = [cos(theta5_result),0,sin(theta5_result);    0,1,0;  -sin(theta5_result),0,cos(theta5_result)];
 R56 = [cos(theta6),-sin(theta6),0;	sin(theta6),cos(theta6),0;	0,0,1];
 
-R34*R45*R56
+R34*R45*R56;
 
 %theta6_result = acos(0.9806)
 %sin(theta6) = -0.1961
 %asin(-0.1961)
 
 %用atan去判定正负
-theta6_result = atan( 0.1961/-0.9806 )
+theta6_result = atan( 0.1961/-0.9806 );
 
 R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
 R45 = [cos(theta5_result),0,sin(theta5_result);    0,1,0;  -sin(theta5_result),0,cos(theta5_result)];
@@ -169,3 +175,16 @@ R34*R45*R56;
 
 
 theta4_result = atan( 0.9075 / 0.4201);
+
+%%%验算
+
+TB_0 = [1,0,0,0;    0,1,0,0;    0,0,1,264;  0,0,0,1];
+T6_t = [1,0,0,0;    0,1,0,0;    0,0,1,40+14;   0,0,0,1];
+T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
+T12 = [cos(theta2_result),-sin(theta2_result),0,0;	0,0,1,0;    -sin(theta2_result),-cos(theta2_result),0,0;          0,0,0,1];
+T23 = [cos(theta3_result),-sin(theta3_result),0,225;  sin(theta3_result),cos(theta3_result),0,0;                 	0,0,1,0;                          0,0,0,1];
+T34 = [cos(theta4_result),-sin(theta4_result),0,0;    0,0,1,217.3;    -sin(theta4_result),-cos(theta4_result),0,0;      0,0,0,1];
+T45 = [cos(theta5_result),-sin(theta5_result),0,0;    0,0,-1,0;    sin(theta5_result),cos(theta5_result),0,0;          0,0,0,1];
+T56 = [cos(theta6_result),-sin(theta6_result),0,0;    0,0,1,0;    -sin(theta6_result),-cos(theta6_result),0,0;          0,0,0,1];
+
+P0_6 =  T01 * T12 * T23 * T34 * T45 * T56
