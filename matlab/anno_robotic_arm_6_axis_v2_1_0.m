@@ -55,13 +55,13 @@ P06 = [20;100;82;1];
 
 %逆
 %T06 = T01 * T12 * T23 * T34 * T45 * T56;
-T46 = T45 * T56;
-T36 = T34 * T46;
-T13 = [cos(theta2 + theta3),-sin(theta2 + theta3),0,225*cos(theta2) ;   0,0,1,0;   -sin(theta2 + theta3),-cos(theta2 + theta3),0,-225*sin(theta2);    0,0,0,1];
+%T46 = T45 * T56;
+%T36 = T34 * T46;
+%T13 = [cos(theta2 + theta3),-sin(theta2 + theta3),0,225*cos(theta2) ;   0,0,1,0;   -sin(theta2 + theta3),-cos(theta2 + theta3),0,-225*sin(theta2);    0,0,0,1];
 
 
-T16 = T13 * T36;
-T06 = T01 * T16;
+%T16 = T13 * T36;
+%T06 = T01 * T16;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +100,7 @@ Z4 =  sin(theta2)*((2173*sin(theta3))/10 - 225) - (2173*cos(theta2)*cos(theta3))
 SIN_THETA3 =  (225^2 +  217.3^2 - 20^2 - 100^2 - 82^2 ) / ( 2*225*217.3 );
 
 %这里要手工判定
-theta3_result = asin(SIN_THETA3);
+theta3_result = asin(SIN_THETA3)
 
 
 %theta3 load in Z4 
@@ -109,9 +109,9 @@ theta3_result = asin(SIN_THETA3);
 % sin = 2u/(1+u^2)  cos = (1-u^2)/(1+u^2)  u = tan(theta/2)
 
 %这里要手工判定2次,如何判定？
-u = (217.3 * sin(theta3_result) - 225) / (82 - 217.3  * cos(theta3_result)) - sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - ((82+217.3*cos( theta3_result ))/(82-217.3*cos(theta3_result))) );
+%u = (217.3 * sin(theta3_result) - 225) / (82 - 217.3  * cos(theta3_result)) - sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - ((82+217.3*cos( theta3_result ))/(82-217.3*cos(theta3_result))) );
 
-theta2_result = atan(u) * 2
+%theta2_result = atan(u) * 2
 %用tan来反三角比较合适
 %COS_THETA1 = -20 / ( 217.3*cos( theta3_result )*sin(theta2_result) + cos( theta2_result )* ( 217.3*sin(theta3_result) - 225 ) );
 %theta1_result  = acos( COS_THETA1 )
@@ -122,6 +122,14 @@ theta2_result = atan(u) * 2
 %theta1_result = asin(SIN_THETA1)
 
 theta1_result = atan(100/20)
+
+%cos(theta1) * g1 = 20
+%g3 = 82
+%cos(theta1) * g1 *82 == G3 *20
+
+TAN_THETA2 = (  ( (217.3 * sin(theta3_result)) - 225 ) * cos(theta1_result) * 82 + 217.3 *cos(theta3_result) * 20        )/(  (- (217.3*cos(theta3_result))* cos(theta1_result)*82) +  ((217.3*sin(theta3_result)) - 225) * 20 );
+theta2_result = atan(TAN_THETA2) 
+
 
 %验算前几点
 T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
@@ -187,4 +195,4 @@ T34 = [cos(theta4_result),-sin(theta4_result),0,0;    0,0,1,217.3;    -sin(theta
 T45 = [cos(theta5_result),-sin(theta5_result),0,0;    0,0,-1,0;    sin(theta5_result),cos(theta5_result),0,0;          0,0,0,1];
 T56 = [cos(theta6_result),-sin(theta6_result),0,0;    0,0,1,0;    -sin(theta6_result),-cos(theta6_result),0,0;          0,0,0,1];
 
-P0_6 =  T01 * T12 * T23 * T34 * T45 * T56
+P0_6 =  T01 * T12 * T23 * T34 * T45 * T56;
