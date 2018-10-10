@@ -132,7 +132,7 @@ T0_3 = T01 * T12 *T23;
 R0_6 = T0_6(1:3,1:3);
 R0_3 = T0_3(1:3,1:3);
 R3_0 = R0_3';
-R3_6 = R3_0 * R0_6;
+R3_6 = R3_0 * R0_6
 
 %%% Euler angle
 
@@ -140,9 +140,32 @@ R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
 R45 = [cos(theta5),0,sin(theta5);    0,1,0;  -sin(theta5),0,cos(theta5)];
 R56 = [cos(theta6),-sin(theta6),0;	sin(theta6),cos(theta6),0;	0,0,1];
 
-% R34*R45*R56 = R3_6
+% R34*R45*R56 = R3_6;
+
+
+theta5_result = acos(0);
+
+% 解下一个
+
+R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
+R45 = [cos(theta5_result),0,sin(theta5_result);    0,1,0;  -sin(theta5_result),0,cos(theta5_result)];
+R56 = [cos(theta6),-sin(theta6),0;	sin(theta6),cos(theta6),0;	0,0,1];
+
+R34*R45*R56
+
+%theta6_result = acos(0.9806)
+%sin(theta6) = -0.1961
+%asin(-0.1961)
+
+%用atan去判定正负
+theta6_result = atan( 0.1961/-0.9806 )
+
+R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
+R45 = [cos(theta5_result),0,sin(theta5_result);    0,1,0;  -sin(theta5_result),0,cos(theta5_result)];
+R56 = [cos(theta6_result),-sin(theta6_result),0;	sin(theta6_result),cos(theta6_result),0;	0,0,1];
+
+R34*R45*R56;
 
 
 
-
-
+theta4_result = atan( 0.9075 / 0.4201);
