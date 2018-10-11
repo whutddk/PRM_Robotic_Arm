@@ -9,12 +9,21 @@ clear;
 
 Pb = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 
-theta1 = -pi/2;
-theta2 = pi/2;
-theta3 = pi/2;
+%stand angle
+%theta1 = -pi/2;
+%theta2 = pi/2;
+%theta3 = pi/2;
+%theta4 = 0;
+%theta5 = 0;
+%theta6 = 0;
+
+theta1 = 0;
+theta2 = 0;
+theta3 = 0;
 theta4 = 0;
 theta5 = 0;
 theta6 = 0;
+
 
 %syms theta1 theta2 theta3 theta4 theta5 theta6;
 
@@ -43,6 +52,14 @@ syms x y z;
 %z = 225*cos(theta2) + 217*cos(theta2)*cos(theta3) - 217*sin(theta2)*sin(theta3) + 114*sin(theta6)*(sin(theta5)*(cos(theta2)*cos(theta3) - sin(theta2)*sin(theta3)) + cos(theta4)*cos(theta5)*(cos(theta2)*sin(theta3) + cos(theta3)*sin(theta2))) + 40*cos(theta5)*(cos(theta2)*cos(theta3) - sin(theta2)*sin(theta3)) - 40*cos(theta4)*sin(theta5)*(cos(theta2)*sin(theta3) + cos(theta3)*sin(theta2)) + 114*cos(theta6)*sin(theta4)*(cos(theta2)*sin(theta3) + cos(theta3)*sin(theta2)) + 264
 
 
+%获得了7个节点坐标，
 
 
+base_checkpoint = Pb * Ts_b 
+should_checkpoint = base_checkpoint  * Ta_s
+arm_checkpoint = should_checkpoint * Te_a
+elbow_checkpoint = arm_checkpoint * Tw_e
+wrist_checkpoint = elbow_checkpoint * Tf_w
+finger_checkpoint = wrist_checkpoint * Tt_f
+tail_checkpoint = finger_checkpoint * Ttail
 
