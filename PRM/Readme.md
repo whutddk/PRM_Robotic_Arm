@@ -9,11 +9,12 @@
 
 
 # 行动路线图
-* 机械臂建模
-* 求得机械臂运动学解公式
+* ~~机械臂建模~~
+* ~~求得机械臂运动学解公式~~
 * 空间点到点算法模拟
-    - 已知起点6维状态，求得当前tool末端空间位置
-    - 已知终点tool末端位置，反解6维状态位置
+    - ~~已知起点6维状态，求得当前tool末端空间位置及生成全机械臂离散点坐标~~
+    - 根据离散坐标生成空间实体  （PS方案）
+    - ~~已知终点tool末端位置，反解6维状态位置~~
     - 随机生成6维点，查找扫面
 >         + 不验证冲撞，不验证障碍，（ROS模拟器）
 >         + 验证自身冲撞，验证扫面冲撞，不验证障碍 （实测）
@@ -22,14 +23,14 @@
     - 查询，运行到位
         
 ## MATLAB流程图
-* 正向解
-* 反解末端位置
-    - 符合PIEPER准则
-    - 获得D-H参数
-    - 已知目标点坐标，令方位为单位阵，生成目标姿态 Tt-b
-    - 由T0-b * T6-0 * Tt-6 = Tt-b反解出T6-0表达
-    - 获得第6点的坐标和旋转阵
-    - 。。。
+* ~~正向解~~
+* ~~反解末端位置~~
+    - ~~符合PIEPER准则~~
+    - ~~获得D-H参数~~
+    - ~~已知目标点坐标，令方位为单位阵，生成目标姿态 Tt-b~~
+    - ~~由T0-b * T6-0 * Tt-6 = Tt-b反解出T6-0表达~~
+    - ~~获得第6点的坐标和旋转阵~~
+    - ~~。。。~~
 * 生成随机6维点
 * 6维点正向解
 * 查询
@@ -43,19 +44,13 @@
 
 > Pb = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 > 
-> theta1 = pi/2;
-> theta2 = pi/2;
-> theta3 = 0;
-> theta4 = 0;
-> theta5 = 0;
-> theta6 = 0;
-> 
-> Ts_b = [cos(theta1),-sin(theta1),0,0;   sin(theta1),cos(theta1),0,0;    0,0,1,0;  0,0,0,1];
-> Ta_s = [cos(theta2),0,sin(theta2),0;    0,1,0,0;    -sin(theta2),0,cos(theta2),264;  0,0,0,1];
-> Te_a = [cos(theta3),0,sin(theta3),0;    0,1,0,0;    -sin(theta3),0,cos(theta3),225;    0,0,0,1];
-> Tw_e = [cos(theta4),-sin(theta4),0,0;   sin(theta4),cos(theta4),0,0;    0,0,1,80;   0,0,0,1];
-> Tf_w = [cos(theta5),0,sin(theta5),0;    0,1,0,0;    -sin(theta5),0,cos(theta5),137;  0,0,0,1];
-> Tt_f = [cos(theta6),-sin(theta6),0,0;   sin(theta6),cos(theta6),0,0;    0,0,1,40;   0,0,0,1];
+
+> Ts_b = [cos(theta1),-sin(theta1),0,0;  sin(theta1),cos(theta1),0,0;    0,0,1,0;  0,0,0,1];
+> Ta_s = [1,0,0,0;    0,cos(theta2),-sin(theta2),0;    0,sin(theta2),cos(theta2),264;  0,0,0,1];
+> Te_a = [1,0,0,0;    0,cos(theta3),-sin(theta3),225;  0,sin(theta3),cos(theta3),0;    0,0,0,1];
+> Tw_e = [cos(theta4),-sin(theta4),0,0;   sin(theta4),cos(theta4),0,0;    0,0,1,-80;   0,0,0,1];
+> Tf_w = [1,0,0,0;    0,cos(theta5),-sin(theta5),0;    0,sin(theta5),cos(theta5),-137;  0,0,0,1];
+> Tt_f = [cos(theta6),-sin(theta6),0,0;   sin(theta6),cos(theta6),0,0;    0,0,1,-40;   0,0,0,1];
 > Ttail= [1,0,0,0;    0,1,0,0;    0,0,1,0;    0,0,0,1];
 
 
