@@ -57,7 +57,7 @@ P06 = T0_6(:,4)
 %T06 = T01 * T12 * T23 * T34 * T45 * T56;
 %T46 = T45 * T56;
 %T36 = T34 * T46;
-%T13 = [cos(theta2 + theta3),-sin(theta2 + theta3),0,225*cos(theta2) ;   0,0,1,0;   -sin(theta2 + theta3),-cos(theta2 + theta3),0,-225*sin(theta2);    0,0,0,1];
+T13 = [cos(theta2 + theta3),-sin(theta2 + theta3),0,225*cos(theta2) ;   0,0,1,0;   -sin(theta2 + theta3),-cos(theta2 + theta3),0,-225*sin(theta2);    0,0,0,1];
 
 
 %T16 = T13 * T36;
@@ -100,7 +100,7 @@ Z4 =  sin(theta2)*((2173*sin(theta3))/10 - 225) - (2173*cos(theta2)*cos(theta3))
 SIN_THETA3 =  (225^2 +  217.3^2 - (P06(1,1))^2 - (P06(2,1))^2 - (P06(3,1))^2 ) / ( 2*225*217.3 );
 
 %这里要手工判定 * 2，因为失去costheta3的约束，此处符号需要判定，用T13补充约束
-theta3_result = asin(SIN_THETA3)
+theta3_result = pi - asin(SIN_THETA3)
 
 
 
@@ -110,12 +110,8 @@ theta3_result = asin(SIN_THETA3)
 % sin = 2u/(1+u^2)  cos = (1-u^2)/(1+u^2)  u = tan(theta/2)
 
 %这里要手工判定2次,如何判定？*2 
-if (theta3_result > 0.000) && (theta3_result < (pi/2))
-    u = (217.3 * sin(theta3_result) - 225) / (P06(3,1) - 217.3  * cos(theta3_result)) - sqrt( ((217.3*sin(theta3_result) -225)  / ( P06(3,1) - 217.3 * cos(theta3_result)))^2 - ((P06(3,1)+217.3*cos( theta3_result ))/(P06(3,1)-217.3*cos(theta3_result))) );
-else 
-    u = (217.3 * sin(theta3_result) - 225) / (P06(3,1) - 217.3  * cos(theta3_result)) + sqrt( ((217.3*sin(theta3_result) -225)  / ( P06(3,1) - 217.3 * cos(theta3_result)))^2 - ((P06(3,1)+217.3*cos( theta3_result ))/(P06(3,1)-217.3*cos(theta3_result))) );
-end
-    theta2_result = atan(u)  * 2 ;
+u = (217.3 * sin(theta3_result) - 225) / (P06(3,1) - 217.3  * cos(theta3_result)) + sqrt( ((217.3*sin(theta3_result) -225)  / ( P06(3,1) - 217.3 * cos(theta3_result)))^2 - ((P06(3,1)+217.3*cos( theta3_result ))/(P06(3,1)-217.3*cos(theta3_result))) );
+theta2_result = atan(u)  * 2 ;
 %%% Z =   cos(theta2) *  ( -217.3*cos(theta3) )  +    sin(theta2)  *   ( 217.3*sin(theta3) - 225 )
 %theta2_result = atan(  ( 217.3*sin(theta3_result) - 225 )  /    ( -217.3*cos(theta3_result) )  )   +      atan(  (sqrt(   ( -217.3*cos(theta3_result) ) ^2     +  ( 217.3*sin(theta3_result) - 225 )^2   -   82^2       )   )   /           (    82       )              )
 
@@ -129,15 +125,17 @@ end
 
 theta1_result = atan(P06(2,1)/P06(1,1));
 
-%TAN_THETA2 = (  ( (217.3 * sin(theta3_result)) - 225 ) * cos(theta1_result) * 82 + 217.3 *cos(theta3_result) * 20        )/(  (- (217.3*cos(theta3_result))* cos(theta1_result)*82) +  ((217.3*sin(theta3_result)) - 225) * 20 );
-%theta2_result = atan(TAN_THETA2) 
+%theta2 theta3互相约束
 
+%theta23_result = atan( ( -225*cos(theta3_result)*P06(3,1)+( cos(theta1_result)*P06(1,1) + sin(theta1_result)*P06(2,1)) * ( 225 * sin(theta3_result) -217))             /   (      (225*sin(theta3_result)-217)*P06(3,1) - (225 *cos(theta3_result)*( cos(theta1_result)*P06(1,1)+sin(theta1_result)*P06(2,1)) )))
+%theta2_result = theta23_result - theta3_result
 
 %验算前几点
 T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
 T12 = [cos(theta2_result),-sin(theta2_result),0,0;	0,0,1,0;    -sin(theta2_result),-cos(theta2_result),0,0;          0,0,0,1];
 T23 = [cos(theta3_result),-sin(theta3_result),0,225;  sin(theta3_result),cos(theta3_result),0,0;                 	0,0,1,0;                          0,0,0,1];
 P6_0 =T01* T12 * T23*[0;217.3;0;1]
+
 
 %%%%解最后三个角
 T01 = [cos(theta1_result),-sin(theta1_result),0,0;    sin(theta1_result),cos(theta1_result),0,0;                    0,0,1,0;                          0,0,0,1];
