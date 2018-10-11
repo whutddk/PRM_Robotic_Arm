@@ -13,7 +13,7 @@ syms theta5;
 syms theta6;
 
 %aim point
-TB_tail =[1,0,0,20;  0,1,0,100;  0,0,1,400;  0,0,0,1]; 
+TB_tail =[1,0,0,-200;  0,1,0,100;  0,0,1,00;  0,0,0,1]; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,8 +45,8 @@ Ttail_6 = [1,0,0,0; 0,1,0,0;    0,0,1,-54;    0,0,0,1];
 T0_6 = T0_B * TB_tail * Ttail_6;
 
 %%% 得到0_6坐标,注意，目标方位应该是可以变得才对，需要补充
-P06 = [20;100;82;1];
-
+%P06 = [20;100;82;1];
+P06 = T0_6(:,4)
 
 %Ptail =  PB * TB_0 * T01 * T12* T23 * T34 * T45*  T56 * T6_t;
 
@@ -97,10 +97,10 @@ Z4 =  sin(theta2)*((2173*sin(theta3))/10 - 225) - (2173*cos(theta2)*cos(theta3))
 %a1==0 d2==0
 %r= k3 = f1^2+ f2^2 + f3^2 =  |P04|^2 = |P06|^2 = 20^2+100^2+82^2
 
-SIN_THETA3 =  (225^2 +  217.3^2 - 20^2 - 100^2 - 82^2 ) / ( 2*225*217.3 );
+SIN_THETA3 =  (225^2 +  217.3^2 - (P06(1,1))^2 - (P06(2,1))^2 - (P06(3,1))^2 ) / ( 2*225*217.3 );
 
-%这里要手工判定
-theta3_result = asin(SIN_THETA3)
+%这里要手工判定 * 2
+theta3_result = -pi - asin(SIN_THETA3);
 
 
 %theta3 load in Z4 
@@ -108,24 +108,22 @@ theta3_result = asin(SIN_THETA3)
 %%sin(theta2)*((2173*sin(theta3_result))/10 - 225) - (2173*cos(theta2)*cos(theta3_result))/10
 % sin = 2u/(1+u^2)  cos = (1-u^2)/(1+u^2)  u = tan(theta/2)
 
-%这里要手工判定2次,如何判定？
-u = (217.3 * sin(theta3_result) - 225) / (82 - 217.3  * cos(theta3_result)) - sqrt( ((217.3*sin(theta3_result) -225)  / ( 82 - 217.3 * cos(theta3_result)))^2 - ((82+217.3*cos( theta3_result ))/(82-217.3*cos(theta3_result))) );
+%这里要手工判定2次,如何判定？*2 
+u = (217.3 * sin(theta3_result) - 225) / (P06(3,1) - 217.3  * cos(theta3_result)) + sqrt( ((217.3*sin(theta3_result) -225)  / ( P06(3,1) - 217.3 * cos(theta3_result)))^2 - ((P06(3,1)+217.3*cos( theta3_result ))/(P06(3,1)-217.3*cos(theta3_result))) );
 
-theta2_result = atan(u) * 2
+theta2_result = atan(u)  * 2 ;
+%%% Z =   cos(theta2) *  ( -217.3*cos(theta3) )  +    sin(theta2)  *   ( 217.3*sin(theta3) - 225 )
+%theta2_result = atan(  ( 217.3*sin(theta3_result) - 225 )  /    ( -217.3*cos(theta3_result) )  )   +      atan(  (sqrt(   ( -217.3*cos(theta3_result) ) ^2     +  ( 217.3*sin(theta3_result) - 225 )^2   -   82^2       )   )   /           (    82       )              )
+
+
 %用tan来反三角比较合适
 %COS_THETA1 = -20 / ( 217.3*cos( theta3_result )*sin(theta2_result) + cos( theta2_result )* ( 217.3*sin(theta3_result) - 225 ) );
 %theta1_result  = acos( COS_THETA1 )
 
-
-
 %SIN_THETA1 = -100 / ((217.3*cos(theta3_result)*sin(theta2_result)) + cos(theta2_result)*((217.3*sin(theta3_result)) - 225));
 %theta1_result = asin(SIN_THETA1)
 
-theta1_result = atan(100/20)
-
-%cos(theta1) * g1 = 20
-%g3 = 82
-%cos(theta1) * g1 *82 == G3 *20
+theta1_result = atan(P06(2,1)/P06(1,1));
 
 %TAN_THETA2 = (  ( (217.3 * sin(theta3_result)) - 225 ) * cos(theta1_result) * 82 + 217.3 *cos(theta3_result) * 20        )/(  (- (217.3*cos(theta3_result))* cos(theta1_result)*82) +  ((217.3*sin(theta3_result)) - 225) * 20 );
 %theta2_result = atan(TAN_THETA2) 
