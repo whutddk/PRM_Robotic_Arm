@@ -13,7 +13,7 @@ syms theta5;
 syms theta6;
 
 %aim point
-TB_tail =[1,0,0,300;  0,1,0,100;  0,0,1,200;  0,0,0,1]; 
+TB_tail =[1,0,0,-300;  0,1,0,100;  0,0,1,200;  0,0,0,1]; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -155,7 +155,7 @@ R45 = [cos(theta5),0,sin(theta5);    0,1,0;  -sin(theta5),0,cos(theta5)];
 R56 = [cos(theta6),-sin(theta6),0;	sin(theta6),cos(theta6),0;	0,0,1];
 
 % R34*R45*R56 = R3_6;
-
+R34*R45*R56
 
 theta5_result = acos(0);
 
