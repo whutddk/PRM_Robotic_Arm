@@ -39,7 +39,7 @@ Ttail_6 = [1,0,0,0; 0,1,0,0;    0,0,1,-54;    0,0,0,1]; %固定参数
 
 T0_6 = T0_B * TB_tail * Ttail_6;
 
-P06 = T0_6(:,4)
+P06 = T0_6(:,4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 theta1_result = atan( (AIM_Y) / (AIM_X) );
@@ -61,20 +61,52 @@ T12 = [cos(theta2_result),-sin(theta2_result),0,0;	0,0,1,0;    -sin(theta2_resul
 T23 = [cos(theta3_result),-sin(theta3_result),0,225;  sin(theta3_result),cos(theta3_result),0,0;                 	0,0,1,0;                          0,0,0,1];
 
 %验算前几点
-P6_0 =T01 * T12 * T23 * [0;217.3;0;1]
+%P6_0 =T01 * T12 * T23 * [0;217.3;0;1]
+syms theta1 theta2 theta3;
 
-T0_3 = T01 * T12 *T23;
-R0_6 = T0_6(1:3,1:3);
+T01 = [cos(theta1),-sin(theta1),0,0;    sin(theta1),cos(theta1),0,0;                    0,0,1,0;                          0,0,0,1];
+T12 = [cos(theta2),-sin(theta2),0,0;	0,0,1,0;    -sin(theta2),-cos(theta2),0,0;          0,0,0,1];
+T23 = [cos(theta3),-sin(theta3),0,225;  sin(theta3),cos(theta3),0,0;                 	0,0,1,0;                          0,0,0,1];
+
+
+T0_3 = T01 * T12 * T23;
 R0_3 = T0_3(1:3,1:3);
+
 R3_0 = R0_3';
-R3_6 = R3_0 * R0_6;
 
-theta5_result = acos(  R3_6(3,3));
+%R3_0 =  
+%[ cos(theta1)*cos(theta2)*cos(theta3) - cos(theta1)*sin(theta2)*sin(theta3)     ,cos(theta2)*cos(theta3)*sin(theta1) - sin(theta1)*sin(theta2)*sin(theta3)      , - cos(theta2)*sin(theta3) - cos(theta3)*sin(theta2)]
+%[- cos(theta1)*cos(theta2)*sin(theta3) - cos(theta1)*cos(theta3)*sin(theta2)    , - cos(theta2)*sin(theta1)*sin(theta3) - cos(theta3)*sin(theta1)*sin(theta2)   ,  sin(theta2)*sin(theta3) - cos(theta2)*cos(theta3)]
+%[-sin(theta1)                                                                   ,     cos(theta1)                                                               ,            0]
 
-R45 = [cos(theta5_result),0,sin(theta5_result);    0,1,0;  -sin(theta5_result),0,cos(theta5_result)];
+%默认单位方向
+%R0_6 = T0_6(1:3,1:3)
 
-theta6_result = -atan( ( R3_6(3,2) ) / ( R3_6(3,1) ) );
-theta4_result = atan ( R3_6(2,3) /  R3_6(1,3) );
+%R3_6 = R3_0 * R0_6;
+
+
+syms theta4  theta5 theta6;
+
+R34 = [cos(theta4),-sin(theta4),0;  sin(theta4),cos(theta4),0;  0,0,1];
+R45 = [cos(theta5),0,sin(theta5);    0,1,0;  -sin(theta5),0,cos(theta5)];
+R56 = [cos(theta6),-sin(theta6),0;	sin(theta6),cos(theta6),0;	0,0,1];
+
+%R34*R45 *R56 = 
+%[ cos(theta4)*cos(theta5)*cos(theta6) - sin(theta4)*sin(theta6), - cos(theta6)*sin(theta4) - cos(theta4)*cos(theta5)*sin(theta6), cos(theta4)*sin(theta5)]
+%[ cos(theta4)*sin(theta6) + cos(theta5)*cos(theta6)*sin(theta4),   cos(theta4)*cos(theta6) - cos(theta5)*sin(theta4)*sin(theta6), sin(theta4)*sin(theta5)]
+%[                                      -cos(theta6)*sin(theta5),                                         sin(theta5)*sin(theta6),             cos(theta5)]
+
+%得cos(theta5) = 0
+%  ( R3_6(3,2) ) / ( R3_6(3,1) ) )   =  cos(theta1) / sin(theta1)
+% R3_6(2,3) /  R3_6(1,3) = sin(theta2)*sin(theta3) -
+% cos(theta2)*cos(theta3)       /    - cos(theta2)*sin(theta3) - cos(theta3)*sin(theta2)
+
+
+
+%theta5_result = acos(  R3_6(3,3));
+theta5_result = pi / 2;
+theta6_result = atan( cos(theta1_result) / sin(theta1_result) );
+theta4_result = atan ( ( sin(theta2_result)*sin(theta3_result) -  cos(theta2_result)*cos(theta3_result) )      /   ( - cos(theta2_result)*sin(theta3_result) - cos(theta3_result)*sin(theta2_result) ) );
 
 
 
