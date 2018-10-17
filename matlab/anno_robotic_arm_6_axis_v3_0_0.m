@@ -26,7 +26,7 @@ theta6 = 0;
 
 
 %syms theta1 theta2 theta3 theta4 theta5 theta6;
-
+syms tool_x tool_y tool_z;
 
 Ts_b = [cos(theta1),-sin(theta1),0,0;	sin(theta1),cos(theta1),0,0;    0,0,1,0;  0,0,0,1];
 Ta_s = [1,0,0,0;    0,cos(theta2),-sin(theta2),0;    0,sin(theta2),cos(theta2),264;  0,0,0,1];
@@ -34,7 +34,7 @@ Te_a = [1,0,0,0;    0,cos(theta3),-sin(theta3),225;  0,sin(theta3),cos(theta3),0
 Tw_e = [cos(theta4),-sin(theta4),0,0;   sin(theta4),cos(theta4),0,0;    0,0,1,-80;   0,0,0,1];
 Tf_w = [1,0,0,0;    0,cos(theta5),-sin(theta5),0;    0,sin(theta5),cos(theta5),-137;  0,0,0,1];
 Tt_f = [cos(theta6),-sin(theta6),0,0;   sin(theta6),cos(theta6),0,0;    0,0,1,-40;   0,0,0,1];
-Ttail= [1,0,0,0;    0,1,0,0;    0,0,1,0;    0,0,0,1];
+Ttail= [1,0,0,tool_x;    0,1,0,-tool_y;    0,0,1,-tool_z;    0,0,0,1];
 
 tail_point = Pb*Ts_b* Ta_s*Te_a*Tw_e*Tf_w*Tt_f*Ttail
 
