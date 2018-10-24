@@ -17,16 +17,19 @@ Pb = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 %theta5 = 0;
 %theta6 = 0;
 
-theta1 = 0;
-theta2 = 0;
-theta3 = 0;
-theta4 = 0;
-theta5 = 0;
-theta6 = 0;
+theta1 = -pi/2;
+theta2 = pi/2;
+theta3 = pi/2;
+theta4 = pi/2;
+theta5 = pi/2;
+theta6 = pi/2;
 
 
 %syms theta1 theta2 theta3 theta4 theta5 theta6;
-syms tool_x tool_y tool_z;
+%syms tool_x tool_y tool_z;
+tool_x = 0;
+tool_y = 0;
+tool_z = 0;
 
 Ts_b = [cos(theta1),-sin(theta1),0,0;	sin(theta1),cos(theta1),0,0;    0,0,1,0;  0,0,0,1];
 Ta_s = [1,0,0,0;    0,cos(theta2),-sin(theta2),0;    0,sin(theta2),cos(theta2),264;  0,0,0,1];
@@ -36,11 +39,11 @@ Tf_w = [1,0,0,0;    0,cos(theta5),-sin(theta5),0;    0,sin(theta5),cos(theta5),-
 Tt_f = [cos(theta6),-sin(theta6),0,0;   sin(theta6),cos(theta6),0,0;    0,0,1,-40;   0,0,0,1];
 Ttail= [1,0,0,tool_x;    0,1,0,-tool_y;    0,0,1,-tool_z;    0,0,0,1];
 
-tail_point = Pb*Ts_b* Ta_s*Te_a*Tw_e*Tf_w*Tt_f*Ttail
+tail_point = Pb*Ts_b* Ta_s*Te_a*Tw_e*Tf_w*Tt_f*Ttail;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-syms x y z;
+%syms x y z;
 
 
 %x = 225*cos(theta1)*sin(theta2) - 40*sin(theta5)*(sin(theta1)*sin(theta4) + cos(theta4)*(cos(theta1)*sin(theta2)*sin(theta3) - cos(theta1)*cos(theta2)*cos(theta3))) + 40*cos(theta5)*(cos(theta1)*cos(theta2)*sin(theta3) + cos(theta1)*cos(theta3)*sin(theta2)) + 217*cos(theta1)*cos(theta2)*sin(theta3) + 217*cos(theta1)*cos(theta3)*sin(theta2);
@@ -55,7 +58,8 @@ syms x y z;
 %获得了7个节点坐标，
 
 
-base_checkpoint = Pb * Ts_b 
+%base_checkpoint = Pb * Ts_b ;
+base_checkpoint =  Ts_b 
 should_checkpoint = base_checkpoint  * Ta_s
 arm_checkpoint = should_checkpoint * Te_a
 elbow_checkpoint = arm_checkpoint * Tw_e
