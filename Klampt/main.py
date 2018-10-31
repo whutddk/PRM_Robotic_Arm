@@ -5,6 +5,36 @@ import time
 from klampt.sim import *
 from klampt import vis
 
+
+def make_testing_mesh(world):
+	"""automatically create a mesh test grid
+	"""
+	grid = Geometry3D()
+
+	grid.loadFile("terrains/cube.off")
+	
+	grid.transform([0.1,0,0,0,0.1,0,0,0,0.1],[0,0,0])
+	
+	#shelfgeom = Geometry3D()
+	
+	#shelfgeom.setGroup()
+	
+	#for i,elem in enumerate([grid]):
+		#g = Geometry3D(elem)
+		#shelfgeom.setElement(i,g)
+		
+		
+	Mesh = world.makeTerrain("mesh")
+	
+	Mesh.geometry().set(grid)
+	
+	Mesh.appearance().setColor(0.2,0.6,0.3,1.0)
+	
+	return Mesh
+
+
+
+
 if __name__ == "__main__":
 	if len(sys.argv)<=1:
 		print "USAGE: visualize_world.py [world_file]"
@@ -14,6 +44,11 @@ if __name__ == "__main__":
 		res = world.readFile(fn)
 		if not res:
 			raise RuntimeError("Unable to load model "+fn) 
+			
+			
+	testGrid = make_testing_mesh(world)
+			
+			
 	vis.add("world",world)
 	sim = Simulator(world)
 	robot = world.robot(0)
