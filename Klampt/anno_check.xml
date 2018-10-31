@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world>
+  <robot name="anno" file="robots/puma760.rob" />
+
+  <terrain file="terrains/block.off" scale="2 2 1" />
+
+  <!-- the table -->
+  <terrain file="terrains/cube.off" scale="0.6 0.6 0.6" translation="0.5 0.5 1">
+     <display color="0.4 0.3 0.2"/>
+  </terrain>
+
+  <rigidObject name="target1" file="objects/block.obj"  position="0.7 -0.7 3"/>
+
+
+  <simulation>
+	<globals maxContacts = "1"/>
+
+	<terrain index= "0" />
+
+    <object index="0">
+       <geometry padding="0.005" />
+     </object>
+
+	<robot index = "0" body ="-1" />
+	
+  </simulation>
+</world>
