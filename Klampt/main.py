@@ -1,4 +1,5 @@
 from klampt import *
+from klampt.model.collide import *
 import sys
 import time
 from klampt.sim import *
@@ -16,8 +17,8 @@ if __name__ == "__main__":
 	vis.add("world",world)
 	sim = Simulator(world)
 	robot = world.robot(0)
-	endeffectors = [robot.numLinks()-1]
-
+	#endeffectors = [robot.numLinks()-1]
+	collisionTest = WorldCollider(world)
 	#controller = sim.getController(0)
 	
 	robotPose = RobotPoser(robot)
@@ -66,8 +67,14 @@ if __name__ == "__main__":
 	#t0 = time.time()
 	for i in range(0,100):
 		vis.shown()
-		sim.simulate(0.01)
-		robotPose.set([0,-0.0157*i,-0.0157*i,-0.0157*i,0,0,0])
+		#sim.simulate(0.01)
+		robotPose.set([0,0.0157*i,-0.0157*i,-0.0157*i,0,0,0])
+		collisionTest = WorldCollider(world)
+		#for i,j in  collisionTest.robotTerrainCollisions(0):
+		for i,j in collisionTest.robotTerrainCollisions(0):
+			print j.getName()
+			
+		
 		#t1 = time.time()
 	#update your code here	       
 		time.sleep(0.1)
