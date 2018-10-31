@@ -9,28 +9,25 @@ from klampt import vis
 def make_testing_mesh(world):
 	"""automatically create a mesh test grid
 	"""
-	grid = Geometry3D()
 
-	grid.loadFile("terrains/cube.off")
+	for z in range(0,31):
+		for y in range (0,31):
+			for x in range (0,31):
+				grid = Geometry3D()
+
+				grid.loadFile("terrains/cube.off")
+
+				grid.transform([0.0319,0,0,0,0.0319,0,0,0,0.0319],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
+					
+
 	
-	grid.transform([0.1,0,0,0,0.1,0,0,0,0.1],[0,0,0])
-	
-	#shelfgeom = Geometry3D()
-	
-	#shelfgeom.setGroup()
-	
-	#for i,elem in enumerate([grid]):
-		#g = Geometry3D(elem)
-		#shelfgeom.setElement(i,g)
-		
-		
-	Mesh = world.makeTerrain("mesh")
-	
-	Mesh.geometry().set(grid)
-	
-	Mesh.appearance().setColor(0.2,0.6,0.3,1.0)
-	
-	return Mesh
+				
+
+				Mesh = world.makeTerrain("Grid" + str(x) + "," + str(y) + "," + str(z))
+
+				Mesh.geometry().set(grid)
+				Mesh.appearance().setColor(0.6,0.2,0.3,0.2)
+	return 
 
 
 
@@ -46,7 +43,7 @@ if __name__ == "__main__":
 			raise RuntimeError("Unable to load model "+fn) 
 			
 			
-	testGrid = make_testing_mesh(world)
+	make_testing_mesh(world)
 			
 			
 	vis.add("world",world)
@@ -101,13 +98,14 @@ if __name__ == "__main__":
 
 	#t0 = time.time()
 	for i in range(0,100):
-		vis.shown()
+		#vis.shown()
 		#sim.simulate(0.01)
 		robotPose.set([0,0.0157*i,-0.0157*i,-0.0157*i,0,0,0])
 		collisionTest = WorldCollider(world)
 		#for i,j in  collisionTest.robotTerrainCollisions(0):
 		for i,j in collisionTest.robotTerrainCollisions(0):
 			print j.getName()
+			#pass
 			
 		
 		#t1 = time.time()

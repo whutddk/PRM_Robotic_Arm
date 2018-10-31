@@ -5,34 +5,6 @@
   <terrain file="terrains/block.off" scale="2 2 1" />
 
 
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="0.5 0.5 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="1 0.5 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="1 0 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="1 0.5 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="0 0 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="0 0.5 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="0.5 0 1">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-  <terrain file="terrains/cube.off" scale="0.5 0.5 0.5" translation="0.5 0.5 0.5">
-     <display color="0.4 0.3 0.2"/>
-  </terrain>
-
-  
-
-
   <simulation>
 	<globals maxContacts = "-1"/>
 
