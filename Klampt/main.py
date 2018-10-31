@@ -64,9 +64,10 @@ if __name__ == "__main__":
 
 
 	#t0 = time.time()
-	while vis.shown():
+	for i in range(0,100):
+		vis.shown()
 		sim.simulate(0.01)
-		robotPose.set([0,-90,-90,-90,0,0,0])
+		robotPose.set([0,-0.0157*i,-0.0157*i,-0.0157*i,0,0,0])
 		#t1 = time.time()
 	#update your code here	       
 		time.sleep(0.1)
