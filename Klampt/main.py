@@ -6,6 +6,14 @@ from klampt.sim import *
 from klampt import vis
 
 
+import random
+
+
+
+Pose = [[0,0,0,0,0,0]]
+
+
+
 def make_testing_mesh(world):
 	"""automatically create a mesh test grid
 	"""
@@ -28,6 +36,35 @@ def make_testing_mesh(world):
 				Mesh.geometry().set(grid)
 				Mesh.appearance().setColor(0.3,0.1,0.1,0.5)
 	return 
+
+def create_Pose():
+	for i in range(0,31):
+		shoulderConfig = random.uniform(-270 , 90)
+		armConfig = random.uniform(0 , 180)
+		elbowConfig = random.uniform(0 , 180)
+		wristConfig = random.uniform(-180 , 180)
+		fingerConfig = random.uniform(-90 , 90)
+		toolConfig = random.uniform(-180 , 180)
+
+		#print shoulderConfig
+		#print armConfig
+		#print elbowConfig
+		#print wristConfig
+		#print fingerConfig
+		#print toolConfig
+
+		Pose.append([shoulderConfig,armConfig,elbowConfig,wristConfig,fingerConfig,toolConfig])
+	print Pose
+	pass
+
+def create_Edge():
+	pass
+
+def create_truetable():
+	pass
+
+
+
 
 
 
@@ -56,6 +93,8 @@ if __name__ == "__main__":
 	
 	#print robotPose.get()
 	
+	create_Pose()
+
 	for i in range(0,100):
 		#vis.shown()
 
