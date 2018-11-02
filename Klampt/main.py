@@ -54,10 +54,29 @@ def create_Pose():
 		#print toolConfig
 
 		Pose.append([shoulderConfig,armConfig,elbowConfig,wristConfig,fingerConfig,toolConfig])
-	print Pose
-	pass
+	#print Pose
+	#print Pose[0]
+	#pass
 
 def create_Edge():
+	for i in range(1,31):
+		for j in range (0,i-1):
+			shoulderStart = Pose[j][0]
+			armStart = Pose[j][1]
+			elbowStart = Pose[j][2]
+			wristStart = Pose[j][3]
+			fingerStart = Pose[j][4]
+			toolStart = Pose[j][5]
+
+			shoulderEnd = Pose[i][0]
+			armEnd = Pose[i][1]
+			elbowEnd = Pose[i][2]
+			wristEnd = Pose[i][3]
+			fingerEnd = Pose[i][4]
+			toolEnd = Pose[i][5]
+
+			
+			pass
 	pass
 
 def create_truetable():
@@ -94,7 +113,7 @@ if __name__ == "__main__":
 	#print robotPose.get()
 	
 	create_Pose()
-
+	create_Edge()
 	for i in range(0,100):
 		#vis.shown()
 
