@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <world>
-  <robot name="anno" file="robots/puma760.rob" />
+  <robot name="anno" file="robots/anno.rob" />
 
   <terrain file="terrains/block.off" scale="2 2 1" />
 
