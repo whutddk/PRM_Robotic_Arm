@@ -99,9 +99,20 @@ def create_Edge():
 def create_truetable():
 	pass
 
+checkWorld = WorldModel()
+def check_edge(x,y,z):
+	if (z == 2):
+		grid = Geometry3D()
+		grid.loadFile("terrains/cube.off")
+		grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
 
+	
+		Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
 
-
+		Mesh.geometry().set(grid)
+		Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
+	pass
+	
 
 
 
@@ -119,10 +130,10 @@ if __name__ == "__main__":
 	make_testing_mesh(world)
 			
 			
-	vis.add("world",world)
+	#vis.add("world",world)
 	#sim = Simulator(world)
 	robot = world.robot(0)
-	vis.show()
+	#vis.show()
 	collisionTest = WorldCollider(world)
 	
 	robotPose = RobotPoser(robot)
@@ -141,11 +152,20 @@ if __name__ == "__main__":
 		for k,j in collisionTest.robotTerrainCollisions(0):
 			result = j.getName()
 			print result[5:8] + result [9:12] + result[13:16]
+			
 			cnt = cnt + 1;
+			check_edge(int(result[5:8]),int(result [9:12]),int(result[13:16]))
 		print "cnt in this frame"
 		print cnt
 		
+		#time.sleep(0.1)
+	vis.add("world",checkWorld)
+	vis.show()
+	while(1):
 		time.sleep(0.1)
+		vis.shown()
+		pass
+
 			#pass
 			
 
