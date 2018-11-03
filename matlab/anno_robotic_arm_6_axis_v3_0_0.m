@@ -17,19 +17,19 @@ Pb = [1,0,0,0;  0,1,0,0;    0,0,1,0;    0,0,0,1];
 %theta5 = 0;
 %theta6 = 0;
 
-theta1 = -pi/6;
-theta2 = pi/3;
-theta3 = pi/3;
-theta4 = pi/3;
-theta5 = pi/3;
-theta6 = pi/3;
+theta1 = -pi/2;
+theta2 = pi/2;
+theta3 = pi/2;
+theta4 = pi/2;
+theta5 = pi/2;
+theta6 = 0;
 
 
 %syms theta1 theta2 theta3 theta4 theta5 theta6;
 %syms tool_x tool_y tool_z;
-tool_x = 10;
-tool_y = 20;
-tool_z = 30;
+tool_x = 0;
+tool_y = 0;
+tool_z = 0;
 
 Ts_b = [cos(theta1),-sin(theta1),0,0;	sin(theta1),cos(theta1),0,0;    0,0,1,0;  0,0,0,1];
 Ta_s = [1,0,0,0;    0,cos(theta2),-sin(theta2),0;    0,sin(theta2),cos(theta2),264;  0,0,0,1];

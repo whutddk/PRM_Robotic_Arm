@@ -61,21 +61,38 @@ def create_Pose():
 def create_Edge():
 	for i in range(1,31):
 		for j in range (0,i-1):
-			shoulderStart = Pose[j][0]
-			armStart = Pose[j][1]
-			elbowStart = Pose[j][2]
-			wristStart = Pose[j][3]
-			fingerStart = Pose[j][4]
-			toolStart = Pose[j][5]
+			shoulderStart = Pose[j][0] / 180 * 3.14159
+			armStart = Pose[j][1] / 180 * 3.14159
+			elbowStart = Pose[j][2] / 180 * 3.14159
+			wristStart = Pose[j][3] / 180 * 3.14159
+			fingerStart = Pose[j][4] / 180 * 3.14159
+			toolStart = Pose[j][5] / 180 * 3.14159
 
-			shoulderEnd = Pose[i][0]
-			armEnd = Pose[i][1]
-			elbowEnd = Pose[i][2]
-			wristEnd = Pose[i][3]
-			fingerEnd = Pose[i][4]
-			toolEnd = Pose[i][5]
+			shoulderEnd = Pose[i][0] / 180 * 3.14159
+			armEnd = Pose[i][1] / 180 * 3.14159
+			elbowEnd = Pose[i][2] / 180 * 3.14159
+			wristEnd = Pose[i][3] / 180 * 3.14159
+			fingerEnd = Pose[i][4] / 180 * 3.14159
+			toolEnd = Pose[i][5] / 180 * 3.14159
 
-			
+			shoulderDis = (shoulderEnd - shoulderStart) / 100
+			armDis = (armEnd - armStart) / 100
+			elbowDis = ( elbowEnd - elbowStart ) / 100
+			wristDis = ( wristEnd - wristStart ) / 100
+			fingerDis = ( fingerEnd - fingerStart ) / 100
+			toolDis = ( toolEnd - toolStart ) / 100
+
+			for k in range (0,100):
+				time.sleep(0.1)
+				robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
+				collisionTest = WorldCollider(world)
+
+				cnt = 0;
+				for p,q in collisionTest.robotTerrainCollisions(0):
+					print q.getName()
+					cnt = cnt + 1;
+				#print "cnt in this frame"
+				#print cnt
 			pass
 	pass
 
@@ -99,13 +116,13 @@ if __name__ == "__main__":
 			raise RuntimeError("Unable to load model "+fn) 
 			
 			
-	make_testing_mesh(world)
+	#make_testing_mesh(world)
 			
 			
 	vis.add("world",world)
-	sim = Simulator(world)
+	#sim = Simulator(world)
 	robot = world.robot(0)
-
+	vis.show()
 	collisionTest = WorldCollider(world)
 	
 	robotPose = RobotPoser(robot)
@@ -126,7 +143,8 @@ if __name__ == "__main__":
 			cnt = cnt + 1;
 		print "cnt in this frame"
 		print cnt
-
+		
+		time.sleep(0.1)
 			#pass
 			
 
