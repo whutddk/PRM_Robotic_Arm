@@ -31,10 +31,10 @@ def make_testing_mesh(world):
 	
 				
 
-				Mesh = world.makeTerrain("Grid" + str(x) + "," + str(y) + "," + str(z))
+				Mesh = world.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
 
 				Mesh.geometry().set(grid)
-				Mesh.appearance().setColor(0.3,0.1,0.1,0.5)
+				Mesh.appearance().setColor(0.3,0.1,0.1,0.1)
 	return 
 
 def create_Pose():
@@ -83,13 +83,13 @@ def create_Edge():
 			toolDis = ( toolEnd - toolStart ) / 100
 
 			for k in range (0,100):
-				time.sleep(0.1)
+				time.sleep(0.01)
 				robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
 				collisionTest = WorldCollider(world)
 
 				cnt = 0;
 				for p,q in collisionTest.robotTerrainCollisions(0):
-					print q.getName()
+					#print q.getName()
 					cnt = cnt + 1;
 				#print "cnt in this frame"
 				#print cnt
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 			raise RuntimeError("Unable to load model "+fn) 
 			
 			
-	#make_testing_mesh(world)
+	make_testing_mesh(world)
 			
 			
 	vis.add("world",world)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 	#print robotPose.get()
 	
 	create_Pose()
-	create_Edge()
+	#create_Edge()
 	for i in range(0,100):
 		#vis.shown()
 
@@ -138,8 +138,9 @@ if __name__ == "__main__":
 		collisionTest = WorldCollider(world)
 
 		cnt = 0;
-		for i,j in collisionTest.robotTerrainCollisions(0):
-			#print j.getName()
+		for k,j in collisionTest.robotTerrainCollisions(0):
+			result = j.getName()
+			print result[5:8] + result [9:12] + result[13:16]
 			cnt = cnt + 1;
 		print "cnt in this frame"
 		print cnt
