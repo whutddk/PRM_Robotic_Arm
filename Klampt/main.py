@@ -11,8 +11,8 @@ import random
 
 
 Pose = [[0,0,0,0,0,0]]
-
-
+trueTable = []
+edgeCnt = 0
 
 def make_testing_mesh(world):
 	"""automatically create a mesh test grid
@@ -59,6 +59,7 @@ def create_Pose():
 	#pass
 
 def create_Edge():
+	edgeCnt = 0
 	for i in range(1,31):
 		for j in range (0,i-1):
 			shoulderStart = Pose[j][0] / 180 * 3.14159
@@ -83,34 +84,46 @@ def create_Edge():
 			toolDis = ( toolEnd - toolStart ) / 100
 
 			for k in range (0,100):
-				time.sleep(0.01)
+				#time.sleep(0.01)
 				robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
 				collisionTest = WorldCollider(world)
 
 				cnt = 0;
 				for p,q in collisionTest.robotTerrainCollisions(0):
+					result = q.getName()
+					create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
 					#print q.getName()
 					cnt = cnt + 1;
-				#print "cnt in this frame"
-				#print cnt
+				print "cnt in this frame"
+				print cnt
+			edgeCnt = edgeCnt +1
+			print "EDGE="
+			print edgeCnt
 			pass
+
 	pass
 
-def create_truetable():
+def trueTable_init():
+	for i in range(0,32767):
+		trueTable.append([0 for j in range(1,1024)])
+	pass
+
+def create_truetable(edge,x,y,z):
+	trueTable[1024*x+32*y+z][edge] = 1
 	pass
 
 checkWorld = WorldModel()
 def check_edge(x,y,z):
-	if (z == 2):
-		grid = Geometry3D()
-		grid.loadFile("terrains/cube.off")
-		grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
+	#if (z == 2):
+	grid = Geometry3D()
+	grid.loadFile("terrains/cube.off")
+	grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
 
 	
-		Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
+	Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
 
-		Mesh.geometry().set(grid)
-		Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
+	Mesh.geometry().set(grid)
+	Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
 	pass
 	
 
@@ -126,14 +139,14 @@ if __name__ == "__main__":
 		if not res:
 			raise RuntimeError("Unable to load model "+fn) 
 			
-			
+	trueTable_init()	
 	make_testing_mesh(world)
 			
 			
-	#vis.add("world",world)
+	vis.add("world",world)
 	#sim = Simulator(world)
 	robot = world.robot(0)
-	#vis.show()
+	vis.show()
 	collisionTest = WorldCollider(world)
 	
 	robotPose = RobotPoser(robot)
@@ -141,30 +154,34 @@ if __name__ == "__main__":
 	#print robotPose.get()
 	
 	create_Pose()
-	#create_Edge()
-	for i in range(0,100):
+	create_Edge()
+
+
+
+	#for i in range(0,100):
 		#vis.shown()
 
-		robotPose.set([0,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,0])
-		collisionTest = WorldCollider(world)
+		#robotPose.set([0,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,0])
+		#collisionTest = WorldCollider(world)
 
-		cnt = 0;
-		for k,j in collisionTest.robotTerrainCollisions(0):
-			result = j.getName()
-			print result[5:8] + result [9:12] + result[13:16]
+		#cnt = 0;
+		#for k,j in collisionTest.robotTerrainCollisions(0):
+			#result = j.getName()
+			#print result
+			#print result[5:8] + result [9:12] + result[13:16]
 			
-			cnt = cnt + 1;
-			check_edge(int(result[5:8]),int(result [9:12]),int(result[13:16]))
-		print "cnt in this frame"
-		print cnt
+			#cnt = cnt + 1;
+			#check_edge(int(result[5:8]),int(result [9:12]),int(result[13:16]))
+		#print "cnt in this frame"
+		#print cnt
 		
 		#time.sleep(0.1)
-	vis.add("world",checkWorld)
-	vis.show()
-	while(1):
-		time.sleep(0.1)
-		vis.shown()
-		pass
+	#vis.add("world",checkWorld)
+	#vis.show()
+	#while(1):
+		#time.sleep(0.1)
+		#vis.shown()
+		#pass
 
 			#pass
 			
