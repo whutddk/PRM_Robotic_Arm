@@ -18,9 +18,9 @@ def make_testing_mesh(world):
 	"""automatically create a mesh test grid
 	"""
 
-	for z in range(0,31):
-		for y in range (0,31):
-			for x in range (0,31):
+	for z in range(0,32):
+		for y in range (0,32):
+			for x in range (0,32):
 				grid = Geometry3D()
 
 				grid.loadFile("terrains/cube.off")
@@ -38,7 +38,7 @@ def make_testing_mesh(world):
 	return 
 
 def create_Pose():
-	for i in xrange(0,31):
+	for i in xrange(0,32):
 		shoulderConfig = random.uniform(-270 , 90)
 		armConfig = random.uniform(0 , 180)
 		elbowConfig = random.uniform(0 , 180)
@@ -60,8 +60,8 @@ def create_Pose():
 
 def create_Edge():
 	edgeCnt = 0
-	for i in xrange(1,31):
-		for j in xrange (0,i-1):
+	for i in xrange(1,32):
+		for j in xrange (0,i):
 			shoulderStart = Pose[j][0] / 180 * 3.14159
 			armStart = Pose[j][1] / 180 * 3.14159
 			elbowStart = Pose[j][2] / 180 * 3.14159
@@ -83,7 +83,7 @@ def create_Edge():
 			fingerDis = ( fingerEnd - fingerStart ) / 100
 			toolDis = ( toolEnd - toolStart ) / 100
 
-			for k in range (0,100):
+			for k in range (0,101):
 				#time.sleep(0.01)
 				robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
 				collisionTest = WorldCollider(world)
@@ -104,7 +104,7 @@ def create_Edge():
 	pass
 
 def trueTable_init():
-	for i in xrange(0,32767):
+	for i in xrange(0,32768):
 		trueTable.append([0 for j in range(1,1024)])
 	pass
 
