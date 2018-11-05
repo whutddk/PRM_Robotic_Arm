@@ -10,7 +10,7 @@ import json
 import random
 
 Pose = []
-
+edge = []
 
 trueTable = []
 edgeCnt = 0
@@ -45,6 +45,13 @@ def load_Pose():
 		#print Pose[1]
 	pass
 
+def load_edge():
+	with open('./edge.json','r') as edgeFile:
+		data = edgeFile.read()
+		edge = json.loads(data)
+		print edge
+
+
 edgeIndex = []
 def creat_Index():
 	cnt = 0
@@ -55,6 +62,7 @@ def creat_Index():
 	print edgeIndex
 	#print cnt
 	pass
+
 
 
 def create_Edge():
@@ -138,6 +146,7 @@ if __name__ == "__main__":
 			
 	load_Pose()
 	creat_Index()
+	load_edge()
 
 	trueTable_init()	
 	make_testing_mesh(world)
