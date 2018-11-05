@@ -10,7 +10,7 @@ import random
 
 
 
-Pose = [[0,0,0,0,0,0]]
+
 trueTable = []
 edgeCnt = 0
 
@@ -105,7 +105,7 @@ def create_Edge():
 
 def trueTable_init():
 	for i in xrange(0,32768):
-		trueTable.append([0 for j in range(1,1024)])
+		trueTable.append([0 for j in range(0,1024)])
 	pass
 
 def create_truetable(edge,x,y,z):
