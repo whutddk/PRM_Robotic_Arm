@@ -59,54 +59,63 @@ def creat_Index():
 		for j in xrange(0,i):
 			edgeIndex.append([i,j])
 			cnt = cnt + 1
-	print edgeIndex
+	#print edgeIndex
 	#print cnt
+	pass
+
+def store_Edge():
+	with open('./edge.json','w') as edgeFile:
+		data = json.dumps(edge)
+		edgeFile.write(data)
 	pass
 
 
 
-def create_Edge():
-	edgeCnt = 0
-	for i in xrange(1,32):
-		for j in xrange (0,i):
-			shoulderStart = Pose[j][0] / 180 * 3.14159
-			armStart = Pose[j][1] / 180 * 3.14159
-			elbowStart = Pose[j][2] / 180 * 3.14159
-			wristStart = Pose[j][3] / 180 * 3.14159
-			fingerStart = Pose[j][4] / 180 * 3.14159
-			toolStart = Pose[j][5] / 180 * 3.14159
+def create_Edge(Index):
 
-			shoulderEnd = Pose[i][0] / 180 * 3.14159
-			armEnd = Pose[i][1] / 180 * 3.14159
-			elbowEnd = Pose[i][2] / 180 * 3.14159
-			wristEnd = Pose[i][3] / 180 * 3.14159
-			fingerEnd = Pose[i][4] / 180 * 3.14159
-			toolEnd = Pose[i][5] / 180 * 3.14159
+	i = edgeIndex[Index][0]
+	j = edgeIndex[Index][1]
 
-			shoulderDis = (shoulderEnd - shoulderStart) / 100
-			armDis = (armEnd - armStart) / 100
-			elbowDis = ( elbowEnd - elbowStart ) / 100
-			wristDis = ( wristEnd - wristStart ) / 100
-			fingerDis = ( fingerEnd - fingerStart ) / 100
-			toolDis = ( toolEnd - toolStart ) / 100
+	shoulderStart = Pose[j][0] / 180 * 3.14159
+	armStart = Pose[j][1] / 180 * 3.14159
+	elbowStart = Pose[j][2] / 180 * 3.14159
+	wristStart = Pose[j][3] / 180 * 3.14159
+	fingerStart = Pose[j][4] / 180 * 3.14159
+	toolStart = Pose[j][5] / 180 * 3.14159
 
-			for k in range (0,101):
-				#time.sleep(0.01)
-				robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
-				collisionTest = WorldCollider(world)
+	shoulderEnd = Pose[i][0] / 180 * 3.14159
+	armEnd = Pose[i][1] / 180 * 3.14159
+	elbowEnd = Pose[i][2] / 180 * 3.14159
+	wristEnd = Pose[i][3] / 180 * 3.14159
+	fingerEnd = Pose[i][4] / 180 * 3.14159
+	toolEnd = Pose[i][5] / 180 * 3.14159
 
-				cnt = 0;
-				for p,q in collisionTest.robotTerrainCollisions(0):
-					result = q.getName()
-					create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
-					#print q.getName()
-					cnt = cnt + 1;
-				print "cnt in this frame"
-				print cnt
-			edgeCnt = edgeCnt +1
-			print "EDGE="
-			print edgeCnt
-			pass
+	shoulderDis = (shoulderEnd - shoulderStart) / 100
+	armDis = (armEnd - armStart) / 100
+	elbowDis = ( elbowEnd - elbowStart ) / 100
+	wristDis = ( wristEnd - wristStart ) / 100
+	fingerDis = ( fingerEnd - fingerStart ) / 100
+	toolDis = ( toolEnd - toolStart ) / 100
+
+	oneEdge = []
+	
+	for k in range (0,101):
+		#time.sleep(0.01)
+		robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
+		collisionTest = WorldCollider(world)
+
+		cnt = 0;
+		for p,q in collisionTest.robotTerrainCollisions(0):
+			result = q.getName()
+			#create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
+			#print q.getName()
+			cnt = cnt + 1;
+		print "cnt in this frame"
+		print cnt
+	edgeCnt = edgeCnt +1
+	print "EDGE="
+	print edgeCnt
+	pass
 
 	pass
 
