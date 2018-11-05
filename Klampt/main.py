@@ -11,9 +11,9 @@ import random
 
 Pose = []
 edge = []
+edgeIndex = []
 
 trueTable = []
-edgeCnt = 0
 
 def make_testing_mesh(world):
 	"""automatically create a mesh test grid
@@ -26,11 +26,7 @@ def make_testing_mesh(world):
 
 				grid.loadFile("terrains/cube.off")
 
-				grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
-					
-
-	
-				
+				grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])			
 
 				Mesh = world.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
 
@@ -39,21 +35,34 @@ def make_testing_mesh(world):
 	return 
 
 def load_Pose():
+	global Pose
+	global edgeIndex
+	global edge
+
 	with open('./pose.json','r') as poseFile:
 		data = poseFile.read()
 		Pose = json.loads(data)
-		#print Pose[1]
+		print Pose
 	pass
 
 def load_edge():
+	global Pose
+	global edgeIndex
+	global edge
+
 	with open('./edge.json','r') as edgeFile:
 		data = edgeFile.read()
 		edge = json.loads(data)
 		print edge
 
 
-edgeIndex = []
+
 def creat_Index():
+
+	global Pose
+	global edgeIndex
+	global edge
+
 	cnt = 0
 	for i in xrange(0,50):
 		for j in xrange(0,i):
@@ -64,6 +73,10 @@ def creat_Index():
 	pass
 
 def store_Edge():
+	global Pose
+	global edgeIndex
+	global edge
+
 	with open('./edge.json','w') as edgeFile:
 		data = json.dumps(edge)
 		edgeFile.write(data)
@@ -72,6 +85,13 @@ def store_Edge():
 
 
 def create_Edge(Index):
+
+	global Pose
+	global edgeIndex
+	global edge
+
+	print "now Create Edge:"
+	print Index
 
 	i = edgeIndex[Index][0]
 	j = edgeIndex[Index][1]
@@ -98,7 +118,7 @@ def create_Edge(Index):
 	toolDis = ( toolEnd - toolStart ) / 100
 
 	oneEdge = []
-	
+
 	for k in range (0,101):
 		#time.sleep(0.01)
 		robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
@@ -109,15 +129,14 @@ def create_Edge(Index):
 			result = q.getName()
 			#create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
 			#print q.getName()
+			oneEdge.append([int(result[5:8]),int(result [9:12]),int(result[13:16])])
 			cnt = cnt + 1;
 		print "cnt in this frame"
 		print cnt
-	edgeCnt = edgeCnt +1
-	print "EDGE="
-	print edgeCnt
+	edge.append(oneEdge)
+	store_Edge()
 	pass
 
-	pass
 
 def trueTable_init():
 	for i in xrange(0,32768):
@@ -157,7 +176,7 @@ if __name__ == "__main__":
 	creat_Index()
 	load_edge()
 
-	trueTable_init()	
+	#trueTable_init()	
 	make_testing_mesh(world)
 			
 			
@@ -171,7 +190,7 @@ if __name__ == "__main__":
 	
 	#print robotPose.get()
 	
-	create_Edge()
+	create_Edge(len(edge))
 
 
 
