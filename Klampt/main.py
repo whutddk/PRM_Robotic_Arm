@@ -53,7 +53,7 @@ def load_edge():
 	with open('./edge.json','r') as edgeFile:
 		data = edgeFile.read()
 		edge = json.loads(data)
-		print edge
+		#print edge
 
 
 
@@ -117,7 +117,7 @@ def create_Edge(Index):
 	fingerDis = ( fingerEnd - fingerStart ) / 100
 	toolDis = ( toolEnd - toolStart ) / 100
 
-	oneEdge = []
+	oneEdge = [0 for m in xrange(0,32768)]
 
 	for k in range (0,101):
 		#time.sleep(0.01)
@@ -129,7 +129,11 @@ def create_Edge(Index):
 			result = q.getName()
 			#create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
 			#print q.getName()
-			oneEdge.append([int(result[5:8]),int(result [9:12]),int(result[13:16])])
+			#oneEdge.append([int(result[5:8]),int(result [9:12]),int(result[13:16])])
+			x = int(result[5:8])
+			y = int(result [9:12])
+			z = int(result[13:16])
+			oneEdge[1024*x+32*y+z] = 1
 			cnt = cnt + 1;
 		print "cnt in this frame"
 		print cnt
