@@ -135,7 +135,7 @@ if __name__ == "__main__":
 
 	res = world.readFile('./anno_check.xml')
 	if not res:
-		raise RuntimeError("Unable to load model "+fn) 
+		raise RuntimeError("Unable to load model ") 
 			
 	trueTable_init()	
 	make_testing_mesh(world)
