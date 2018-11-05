@@ -130,23 +130,21 @@ def check_edge(x,y,z):
 
 
 if __name__ == "__main__":
-	if len(sys.argv)<=1:
-		print "USAGE: visualize_world.py [world_file]"
-		exit()
+	
 	world = WorldModel()
-	for fn in sys.argv[1:]:
-		res = world.readFile(fn)
-		if not res:
-			raise RuntimeError("Unable to load model "+fn) 
+
+	res = world.readFile('./anno_check.xml')
+	if not res:
+		raise RuntimeError("Unable to load model "+fn) 
 			
 	trueTable_init()	
 	make_testing_mesh(world)
 			
 			
-	vis.add("world",world)
+	#vis.add("world",world)
 	#sim = Simulator(world)
 	robot = world.robot(0)
-	vis.show()
+	#vis.show()
 	collisionTest = WorldCollider(world)
 	
 	robotPose = RobotPoser(robot)
