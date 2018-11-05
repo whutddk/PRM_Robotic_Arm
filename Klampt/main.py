@@ -38,7 +38,7 @@ def make_testing_mesh(world):
 	return 
 
 def create_Pose():
-	for i in range(0,31):
+	for i in xrange(0,31):
 		shoulderConfig = random.uniform(-270 , 90)
 		armConfig = random.uniform(0 , 180)
 		elbowConfig = random.uniform(0 , 180)
@@ -60,8 +60,8 @@ def create_Pose():
 
 def create_Edge():
 	edgeCnt = 0
-	for i in range(1,31):
-		for j in range (0,i-1):
+	for i in xrange(1,31):
+		for j in xrange (0,i-1):
 			shoulderStart = Pose[j][0] / 180 * 3.14159
 			armStart = Pose[j][1] / 180 * 3.14159
 			elbowStart = Pose[j][2] / 180 * 3.14159
@@ -104,7 +104,7 @@ def create_Edge():
 	pass
 
 def trueTable_init():
-	for i in range(0,32767):
+	for i in xrange(0,32767):
 		trueTable.append([0 for j in range(1,1024)])
 	pass
 
