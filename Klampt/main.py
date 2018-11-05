@@ -5,10 +5,11 @@ import time
 from klampt.sim import *
 from klampt import vis
 
+import json
 
 import random
 
-
+Pose = []
 
 
 trueTable = []
@@ -37,26 +38,12 @@ def make_testing_mesh(world):
 				Mesh.appearance().setColor(0.3,0.1,0.1,0.1)
 	return 
 
-def create_Pose():
-	for i in xrange(0,32):
-		shoulderConfig = random.uniform(-270 , 90)
-		armConfig = random.uniform(0 , 180)
-		elbowConfig = random.uniform(0 , 180)
-		wristConfig = random.uniform(-180 , 180)
-		fingerConfig = random.uniform(-90 , 90)
-		toolConfig = random.uniform(-180 , 180)
-
-		#print shoulderConfig
-		#print armConfig
-		#print elbowConfig
-		#print wristConfig
-		#print fingerConfig
-		#print toolConfig
-
-		Pose.append([shoulderConfig,armConfig,elbowConfig,wristConfig,fingerConfig,toolConfig])
-	#print Pose
-	#print Pose[0]
-	#pass
+def load_Pose():
+	with open('./pose.json','r') as poseFile:
+		data = poseFile.read()
+		Pose = json.loads(data)
+		#print Pose[1]
+	pass
 
 def create_Edge():
 	edgeCnt = 0
@@ -137,6 +124,8 @@ if __name__ == "__main__":
 	if not res:
 		raise RuntimeError("Unable to load model ") 
 			
+	load_Pose()
+
 	trueTable_init()	
 	make_testing_mesh(world)
 			
@@ -151,7 +140,6 @@ if __name__ == "__main__":
 	
 	#print robotPose.get()
 	
-	create_Pose()
 	create_Edge()
 
 
