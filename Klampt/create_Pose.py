@@ -12,7 +12,7 @@ import random
 Pose = [[0,0,0,0,0,0]]
 
 def create_Pose():
-	for i in xrange(0,32):
+	for i in xrange(0,50):
 		shoulderConfig = random.uniform(-270 , 90)
 		armConfig = random.uniform(0 , 180)
 		elbowConfig = random.uniform(0 , 180)

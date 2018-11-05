@@ -45,6 +45,18 @@ def load_Pose():
 		#print Pose[1]
 	pass
 
+edgeIndex = []
+def creat_Index():
+	cnt = 0
+	for i in xrange(0,50):
+		for j in xrange(0,i):
+			edgeIndex.append([i,j])
+			cnt = cnt + 1
+	print edgeIndex
+	#print cnt
+	pass
+
+
 def create_Edge():
 	edgeCnt = 0
 	for i in xrange(1,32):
@@ -125,6 +137,7 @@ if __name__ == "__main__":
 		raise RuntimeError("Unable to load model ") 
 			
 	load_Pose()
+	creat_Index()
 
 	trueTable_init()	
 	make_testing_mesh(world)
