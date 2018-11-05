@@ -193,8 +193,8 @@ if __name__ == "__main__":
 	robotPose = RobotPoser(robot)
 	
 	#print robotPose.get()
-	
-	create_Edge(len(edge))
+	while(len(edge) < 1024):
+		create_Edge(len(edge))
 
 
 
