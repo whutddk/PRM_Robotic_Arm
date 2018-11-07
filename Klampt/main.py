@@ -42,7 +42,7 @@ def load_Pose():
 	with open('./pose.json','r') as poseFile:
 		data = poseFile.read()
 		Pose = json.loads(data)
-		print Pose
+		#print Pose
 	pass
 
 def load_edge():
@@ -193,7 +193,7 @@ if __name__ == "__main__":
 	robotPose = RobotPoser(robot)
 	
 	#print robotPose.get()
-	while(len(edge) < 1024):
+	while(len(edge) < 1224):
 		create_Edge(len(edge))
 
 
