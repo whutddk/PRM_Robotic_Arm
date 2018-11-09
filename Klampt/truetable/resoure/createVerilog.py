@@ -31,81 +31,13 @@ def write_verilog():
 		# 	verilogFile.write(strData)
 		# 	#print strSyntax
 
-		for j in range(0,1024): #all edge
-			strData = 'edge_mask['+str(j)+']='
-			for i in range(0,32768): #all pix
-				if  trueTable[i][j] == 1 :
-					fun = bin(i)
-					lenth = len(fun)
-					while ( lenth < 17 ):
-						fun = fun + '0'
-						lenth = lenth + 1
-					if ( fun[2] == '1' ):
-						strData = strData + 'O '
-					else :
-						strData = strData + 'O` '
-					if ( fun[3] == '1' ):
-						strData = strData + 'N '
-					else :
-						strData = strData + 'N` '
-					if ( fun[4] == '1' ):
-						strData = strData + 'M '
-					else :
-						strData = strData + 'M` '
-					if ( fun[5] == '1' ):
-						strData = strData + 'L '
-					else :
-						strData = strData + 'L` '
-					if ( fun[6] == '1' ):
-						strData = strData + 'K '
-					else :
-						strData = strData + 'K` '
-					if ( fun[7] == '1' ):
-						strData = strData + 'J '
-					else :
-						strData = strData + 'J` '
-					if ( fun[8] == '1' ):
-						strData = strData + 'I '
-					else :
-						strData = strData + 'I` '
-					if ( fun[9] == '1' ):
-						strData = strData + 'H '
-					else :
-						strData = strData + 'H` '
-					if ( fun[10] == '1' ):
-						strData = strData + 'G '
-					else :
-						strData = strData + 'G` '
-					if ( fun[11] == '1' ):
-						strData = strData + 'F '
-					else :
-						strData = strData + 'F` '
-					if ( fun[12] == '1' ):
-						strData = strData + 'E '
-					else :
-						strData = strData + 'E` '
-					if ( fun[13] == '1' ):
-						strData = strData + 'D '
-					else :
-						strData = strData + 'D` '
-					if ( fun[14] == '1' ):
-						strData = strData + 'C '
-					else :
-						strData = strData + 'C` '
-					if ( fun[15] == '1' ):
-						strData = strData + 'B '
-					else :
-						strData = strData + 'B` '
-					if ( fun[16] == '1' ):
-						strData = strData + 'A'
-					else :
-						strData = strData + 'A`'
-
-					strData = strData + '+'
-
-			strData = strData + ';\n'
-			verilogFile.write(strData)
-
+		for j in range(0,1024): # all edge
+			strSyntax = 'always @(*) begin\n case({A,B,C,D,E,F,G,H,I,J,K,L,M,N,O})\n'
+			for i in range(0,32768):	#all case all pix
+				if ( trueTable[i][j] == 1 ):
+					strSyntax = strSyntax + bin(i) + ',\n'
+			strSyntax = strSyntax + ':edge_mask_reg[' + str(j) +'] <= 1\'b1;\ndefault:edge_mask_reg[' + str(j) +'] <= 1\'b0;\n endcase \n end\n\n'
+			verilogFile.write(strSyntax)
 
 
 
