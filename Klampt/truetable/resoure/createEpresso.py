@@ -19,8 +19,8 @@ def load_trueTable():
 def write_verilog():
 	global trueTable
 
-	for k in range(0,8):
-		with open('./128/epressoTable'+str(k),'w') as epressFile:
+	for j in range(0,1024): #all edge
+		with open('./single/epressoTable'+str(j),'w') as epressFile:
 
 
 		#epressFile.write('.i 15\n.o 1024\n')
@@ -40,8 +40,8 @@ def write_verilog():
 				#print (logicInput)
 				logicOutput = ''
 				#for j in range(0,1024): #all edge
-				for j in range(128*k+0,128*k+128): #all edge
-					logicOutput = logicOutput+str(trueTable[i][j])
+				
+				logicOutput = logicOutput+str(trueTable[i][j])
 				logicOutput = logicOutput +'\n'
 					#strData = 'assign edge_mask['+str(j)+']=('
 				pass
