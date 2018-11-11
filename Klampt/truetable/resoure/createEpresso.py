@@ -24,7 +24,7 @@ def write_verilog():
 
 
 		#epressFile.write('.i 15\n.o 1024\n')
-			epressFile.write('.i 15\n.o 128\n')
+			epressFile.write('.i 15\n.o 1\n')
 
 			#for i in range(0,32768): #all pix
 			for i in range(0,32768): #all pix
