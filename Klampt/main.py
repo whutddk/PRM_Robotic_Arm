@@ -21,12 +21,12 @@ def make_testing_mesh(world):
 
 	for z in range(0,32):
 		for y in range (0,32):
-			for x in range (0,32):
+			for x in range (0,16):
 				grid = Geometry3D()
 
 				grid.loadFile("terrains/cube.off")
 
-				grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])			
+				grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*y - 0.512,0.032*x-0.512,0.032*z])			
 
 				Mesh = world.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
 
@@ -42,7 +42,7 @@ def load_Pose():
 	with open('./pose.json','r') as poseFile:
 		data = poseFile.read()
 		Pose = json.loads(data)
-		#print Pose
+		print Pose
 	pass
 
 def load_edge():
@@ -55,22 +55,17 @@ def load_edge():
 		edge = json.loads(data)
 		#print edge
 
-
-
-def creat_Index():
+def load_Index():
 
 	global Pose
 	global edgeIndex
 	global edge
 
-	cnt = 0
-	for i in xrange(0,50):
-		for j in xrange(0,i):
-			edgeIndex.append([i,j])
-			cnt = cnt + 1
-	#print edgeIndex
-	#print cnt
-	pass
+	with open('./edgeIndex.json','r') as edgeIndexFile:
+		data = edgeIndexFile.read()
+		edgeIndex = json.loads(data)
+		
+		print edgeIndex
 
 def store_Edge():
 	global Pose
@@ -117,10 +112,10 @@ def create_Edge(Index):
 	fingerDis = ( fingerEnd - fingerStart ) / 100
 	toolDis = ( toolEnd - toolStart ) / 100
 
-	oneEdge = [0 for m in xrange(0,32768)]
+	oneEdge = [0 for m in xrange(0,16384)]
 
 	for k in range (0,101):
-		#time.sleep(0.01)
+		time.sleep(0.01)
 		robotPose.set([0,shoulderStart + shoulderDis*k,- (armStart + armDis*k),-(elbowStart + elbowDis*k),- (wristStart + wristDis*k),-(fingerStart + fingerDis*k),toolStart + toolDis*k])
 		collisionTest = WorldCollider(world)
 
@@ -151,19 +146,19 @@ def create_truetable(edge,x,y,z):
 	trueTable[1024*x+32*y+z][edge] = 1
 	pass
 
-checkWorld = WorldModel()
-def check_edge(x,y,z):
-	#if (z == 2):
-	grid = Geometry3D()
-	grid.loadFile("terrains/cube.off")
-	grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
-
-	
-	Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
-
-	Mesh.geometry().set(grid)
-	Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
-	pass
+#checkWorld = WorldModel()
+#def check_edge(x,y,z):
+#	#if (z == 2):
+#	grid = Geometry3D()
+#	grid.loadFile("terrains/cube.off")
+#	grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
+#
+#	
+#	Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
+#
+#	Mesh.geometry().set(grid)
+#	Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
+#	pass
 	
 
 
@@ -177,7 +172,7 @@ if __name__ == "__main__":
 		raise RuntimeError("Unable to load model ") 
 			
 	load_Pose()
-	creat_Index()
+	load_Index()
 	load_edge()
 
 	#trueTable_init()	
@@ -193,35 +188,16 @@ if __name__ == "__main__":
 	robotPose = RobotPoser(robot)
 	
 	#print robotPose.get()
-	while(len(edge) < 1224):
+	while(len(edge) < 1024):
 		create_Edge(len(edge))
 
 
 
-	#for i in range(0,100):
-		#vis.shown()
 
-		#robotPose.set([0,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,-0.0157*i,0])
-		#collisionTest = WorldCollider(world)
-
-		#cnt = 0;
-		#for k,j in collisionTest.robotTerrainCollisions(0):
-			#result = j.getName()
-			#print result
-			#print result[5:8] + result [9:12] + result[13:16]
-			
-			#cnt = cnt + 1;
-			#check_edge(int(result[5:8]),int(result [9:12]),int(result[13:16]))
-		#print "cnt in this frame"
-		#print cnt
-		
-		#time.sleep(0.1)
-	#vis.add("world",checkWorld)
-	#vis.show()
 	#while(1):
 		#time.sleep(0.1)
 		#vis.shown()
-		#pass
+		pass
 
 			#pass
 			
