@@ -122,9 +122,8 @@ def create_Edge(Index):
 		cnt = 0;
 		for p,q in collisionTest.robotTerrainCollisions(0):
 			result = q.getName()
-			#create_truetable(edgeCnt,int(result[5:8]),int(result [9:12]),int(result[13:16]))
+			
 			#print q.getName()
-			#oneEdge.append([int(result[5:8]),int(result [9:12]),int(result[13:16])])
 			x = int(result[5:8])
 			y = int(result [9:12])
 			z = int(result[13:16])
@@ -148,10 +147,8 @@ if __name__ == "__main__":
 	load_Index()
 	load_edge()
 
-	#trueTable_init()	
 	make_testing_mesh(world)
-			
-			
+				
 	#vis.add("world",world)
 	#sim = Simulator(world)
 	robot = world.robot(0)
@@ -170,7 +167,7 @@ if __name__ == "__main__":
 	#while(1):
 		#time.sleep(0.1)
 		#vis.shown()
-		pass
+		#pass
 
 			#pass
 			

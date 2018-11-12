@@ -39,11 +39,11 @@ def create_Pose_Edge():
 			shoulderDis = abs( Pose[i][0] - Pose[poseCnt][0] )
 			armDis = abs( Pose[i][1] - Pose[poseCnt][1] )
 			elbowDis = abs( Pose[i][2] - Pose[poseCnt][2] )
-			wristDis = abs( Pose[i][3] - Pose[poseCnt][3] )
-			fingerDis = abs( Pose[i][4] - Pose[poseCnt][4] )
-			toolDis = abs( Pose[i][5] - Pose[poseCnt][5] )
+			# wristDis = abs( Pose[i][3] - Pose[poseCnt][3] )
+			# fingerDis = abs( Pose[i][4] - Pose[poseCnt][4] )
+			# toolDis = abs( Pose[i][5] - Pose[poseCnt][5] )
 
-			if ( ( shoulderDis + armDis + elbowDis + wristDis + fingerDis + toolDis ) < 270 ):
+			if ( ( shoulderDis + armDis + elbowDis  ) < 180 ):
 				edgeIndex.append([i,poseCnt])
 				edgeCnt = edgeCnt + 1
 
