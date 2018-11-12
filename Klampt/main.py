@@ -87,6 +87,7 @@ def create_Edge(Index):
 
 	print "now Create Edge:"
 	print Index
+	print edgeIndex[Index]
 
 	i = edgeIndex[Index][0]
 	j = edgeIndex[Index][1]
