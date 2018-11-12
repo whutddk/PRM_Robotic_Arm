@@ -136,33 +136,6 @@ def create_Edge(Index):
 	store_Edge()
 	pass
 
-
-def trueTable_init():
-	for i in xrange(0,32768):
-		trueTable.append([0 for j in range(0,1024)])
-	pass
-
-def create_truetable(edge,x,y,z):
-	trueTable[1024*x+32*y+z][edge] = 1
-	pass
-
-#checkWorld = WorldModel()
-#def check_edge(x,y,z):
-#	#if (z == 2):
-#	grid = Geometry3D()
-#	grid.loadFile("terrains/cube.off")
-#	grid.transform([0.032,0,0,0,0.032,0,0,0,0.032],[0.032*x - 0.512,0.032*y- 0.512,0.032*z])
-#
-#	
-#	Mesh = checkWorld.makeTerrain("Grid," + "%3d"%x + "," + "%3d"%y + "," + "%3d"%z)
-#
-#	Mesh.geometry().set(grid)
-#	Mesh.appearance().setColor(0.1,0.1,0.3,0.1)
-#	pass
-	
-
-
-
 if __name__ == "__main__":
 	
 	world = WorldModel()
