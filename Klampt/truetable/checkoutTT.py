@@ -35,7 +35,7 @@ def checkout_Truetable():
 	global trueTable
 
 	for i in xrange(0,1034):#check all edge
-		for j in xrange(0,32768):#check all pix
+		for j in xrange(0,16384):#check all pix
 			trueTable[j][i] = edge[i][j]
 	pass
 

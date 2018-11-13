@@ -11,7 +11,7 @@ def create_empty_trueTable():
 	output = [ 0 for k in xrange(0,1034) ]
 	
 	#print output
-	for i in xrange(0,32768):
+	for i in xrange(0,16384):
 		trueTable.append(output)
 	#print trueTable
 	
