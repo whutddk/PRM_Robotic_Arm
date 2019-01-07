@@ -1,0 +1,6 @@
+[submodule "Klampt_Robotic_Arm_Script"]
+	path = Klampt_Robotic_Arm_Script
+	url = ./Klampt_Robotic_Arm_Script
+[submodule "PRMCcode"]
+	path = PRMCcode
+	url = ./PRMCcode
