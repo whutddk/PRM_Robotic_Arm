@@ -1,6 +1,9 @@
 [submodule "Klampt_Robotic_Arm_Script"]
 	path = Klampt_Robotic_Arm_Script
-	url = ./Klampt_Robotic_Arm_Script
+	url = https://github.com/whutddk/Klampt_Robotic_Arm_Script.git
 [submodule "PRMCcode"]
 	path = PRMCcode
-	url = ./PRMCcode
+	url = https://github.com/whutddk/PRM_Ccode.git
+[submodule "moveit_tutorials"]
+	path = moveit_tutorials
+	url = https://github.com/whutddk/moveit_tutorials.git
