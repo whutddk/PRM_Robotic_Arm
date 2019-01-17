@@ -3,7 +3,7 @@ Klampt/environment/
 Klampt/truetable/resoure/test
 Klampt/truetable/resoure/128/xil_1.tmp
 Klampt/truetable/resoure/singleVerilog/debug.log
-*.gz
-*.log
 *.aux
+*.log
+*.gz
 paper/tex/FPGA-based Design of Real-time Robot Motion Planning.pdf
