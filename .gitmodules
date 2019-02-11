@@ -9,4 +9,4 @@
 	url = https://github.com/whutddk/moveit_tutorials.git
 [submodule "PRM-RA-Academic"]
 	path = PRM-RA-Academic
-	url = https://github.com/whutddk/PRM-RA-Academic
+	url = git@gitee.com:whutddk/PRM-RA-Academic.git
