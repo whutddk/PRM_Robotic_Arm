@@ -7,3 +7,6 @@
 [submodule "moveit_tutorials"]
 	path = moveit_tutorials
 	url = https://github.com/whutddk/moveit_tutorials.git
+[submodule "PRM-RA-Academic"]
+	path = PRM-RA-Academic
+	url = https://github.com/whutddk/PRM-RA-Academic
