@@ -1,6 +1,3 @@
-[submodule "Klampt_Robotic_Arm_Script"]
-	path = Klampt_Robotic_Arm_Script
-	url = https://github.com/whutddk/Klampt_Robotic_Arm_Script.git
 [submodule "PRMCcode"]
 	path = PRMCcode
 	url = https://github.com/whutddk/PRM_Ccode.git
@@ -13,3 +10,6 @@
 [submodule "Verilog_RA_Script"]
 	path = Verilog_RA_Script
 	url = git@github.com:whutddk/Verilog_RA_Script.git
+[submodule "Klampt_Robotic_Arm_Script"]
+	path = Klampt_Robotic_Arm_Script
+	url = git@github.com:whutddk/Klampt_Robotic_Arm_Script.git
