@@ -10,3 +10,6 @@
 [submodule "PRM-RA-Academic"]
 	path = PRM-RA-Academic
 	url = git@github.com:whutddk/PRM-RA-Academic.git
+[submodule "Verilog_RA_Script"]
+	path = Verilog_RA_Script
+	url = git@github.com:whutddk/Verilog_RA_Script.git
