@@ -13,3 +13,6 @@
 [submodule "Klampt_Robotic_Arm_Script"]
 	path = Klampt_Robotic_Arm_Script
 	url = git@github.com:whutddk/Klampt_Robotic_Arm_Script.git
+[submodule "Matlab_RA_Script"]
+	path = Matlab_RA_Script
+	url = git@github.com:whutddk/Matlab_RA_Script.git
