@@ -1,0 +1,18 @@
+[submodule "PRMCcode"]
+	path = PRMCcode
+	url = https://github.com/whutddk/PRM_Ccode.git
+[submodule "moveit_tutorials"]
+	path = moveit_tutorials
+	url = https://github.com/whutddk/moveit_tutorials.git
+[submodule "PRM-RA-Academic"]
+	path = PRM-RA-Academic
+	url = git@github.com:whutddk/PRM-RA-Academic.git
+[submodule "Verilog_RA_Script"]
+	path = Verilog_RA_Script
+	url = git@github.com:whutddk/Verilog_RA_Script.git
+[submodule "Klampt_Robotic_Arm_Script"]
+	path = Klampt_Robotic_Arm_Script
+	url = git@github.com:whutddk/Klampt_Robotic_Arm_Script.git
+[submodule "Matlab_RA_Script"]
+	path = Matlab_RA_Script
+	url = git@github.com:whutddk/Matlab_RA_Script.git
