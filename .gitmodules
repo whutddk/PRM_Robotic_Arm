@@ -16,3 +16,9 @@
 [submodule "Matlab_RA_Script"]
 	path = Matlab_RA_Script
 	url = git@github.com:whutddk/Matlab_RA_Script.git
+[submodule "PRM-RA-PL"]
+	path = PRM-RA-PL
+	url = git@gitee.com:ps-micro/PKB-2019.git
+[submodule "PRM_RA_PCB"]
+	path = PRM_RA_PCB
+	url = git@github.com:whutddk/PRM_RA_PCB.git
