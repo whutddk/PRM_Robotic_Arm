@@ -22,3 +22,6 @@
 [submodule "PRM_RA_PCB"]
 	path = PRM_RA_PCB
 	url = git@github.com:whutddk/PRM_RA_PCB.git
+[submodule "PRM-RA-ACC"]
+	path = PRM-RA-ACC
+	url = git@github.com:whutddk/PRM-RA-ACC.git
