@@ -3,6 +3,32 @@
 
 
 ----------------------------------
+### Klampt_Robotic_Arm_Script 
+* Python script of Klampt(A robot simulator platform from duke university)
 
-* 小论文
-  - 《FPGA-based Design and Implementation of Real-time Robot Motion Planning》（ICIST 2019 已收）
+### Matlab_RA_Script
+* Some matlab script of fk&ik 
+
+### PRM-RA-Academic (Private)
+* Technology Paper
+  - <FPGA-based Design and Implementation of Real-time Robot Motion Planning>(ICIST-2019)
+* Graduate Project
+* PPT
+
+### PRM-RA-PL (Private)
+* Programable Logic of Robotic Arm Driver in Verilog
+
+### PRMCcode
+* C code of Robotic Arm Driver
+* C code of Probablistic RoadMap Methods
+
+### PRM_RA_PCB
+* Hardware of Robotic Arm
+
+### Verilog_RA_Script
+* Implement of collision detection in Verilog
+
+
+-----------------------
+
+
