@@ -2,7 +2,7 @@
 
 ------------------
 
-![System](/doc/system.png)
+![System](/doc/System.png)
 
 ----------------------------------
 ### Klampt_Robotic_Arm_Script 
@@ -34,5 +34,5 @@
 -----------------------
 
 ## Doc
-* [开题报告](/doc/开题报告.pptx)
+* [开题报告](/doc/开题报告.pdf)
 
