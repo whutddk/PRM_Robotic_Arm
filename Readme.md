@@ -3,7 +3,7 @@
 ------------------
 
 ![System](/doc/System.png)
-
+![obstacle](/doc/obstacle collide.gif)
 ----------------------------------
 ### Klampt_Robotic_Arm_Script 
 * Python script of Klampt(A robot simulator platform from duke university)
@@ -34,5 +34,5 @@
 -----------------------
 
 ## Doc
-* [开题报告](/doc/开题报告.pdf)
+* [开题报告](/doc/开题报告-李锐戈.pdf)
 
