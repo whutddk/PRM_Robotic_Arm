@@ -4,7 +4,7 @@
 
 * ![System](/doc/System.png)
 * ![obstacle](/doc/obstacle_collide.gif)
-* [<FPGA-based Design and Implementation of Real-time Robot Motion Planning>(IEEE)](/doc/paper_p036.pdf)
+* [\<FPGA-based Design and Implementation of Real-time Robot Motion Planning\>(IEEE)](/doc/paper_p036.pdf)
 
 ----------------------------------
 
