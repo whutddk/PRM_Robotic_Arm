@@ -2,10 +2,13 @@
 
 ------------------
 
-![System](/doc/System.png)
-![obstacle](/doc/obstacle_collide.gif)
-[\<FPGA-based Design and Implementation of Real-time Robot Motion Planning\>(IEEE)](/doc/paper_p036.pdf)
+* ![System](/doc/System.png)
+* ![obstacle](/doc/obstacle_collide.gif)
+* [<FPGA-based Design and Implementation of Real-time Robot Motion Planning>(IEEE)](/doc/paper_p036.pdf)
+
 ----------------------------------
+
+
 ### Klampt_Robotic_Arm_Script 
 * Python script of Klampt(A robot simulator platform from duke university)
 
